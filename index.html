@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMEA — Luxury Light Therapy</title>
+
+    <!-- Fraunces (optical variable serif — editorial luxury) + Plus Jakarta Sans (premium UI sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,200;1,9..144,300;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════ */
+:root {
+    --black:  #080808;
+    --dark:   #111111;
+    --dark2:  #1A1A1A;
+    --white:  #FFFFFF;
+    --cream:  #F5F2EC;
+    --sand:   #EDEAE3;
+    --gold:   #B08A22;
+    --gold-l: #D4AA44;
+    --text:   #1C1C1C;
+    --muted:  #80807A;
+    --border: #DEDAD2;
+
+    --serif: 'Fraunces', 'Palatino Linotype', Georgia, serif;
+    --sans:  'Plus Jakarta Sans', 'Helvetica Neue', system-ui, sans-serif;
+    --ease:  cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ═══════════════════════════════════════
+   BASE
+═══════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 17px; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-optical-sizing: auto; }
+body { font-family: var(--sans); background: var(--cream); color: var(--text); overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+button { border: none; background: none; cursor: pointer; font-family: inherit; }
+img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
+
+/* ═══════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════ */
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 1s var(--ease), transform 1s var(--ease);
+}
+[data-reveal].is-visible           { opacity: 1; transform: none; }
+[data-reveal-delay="1"].is-visible { transition-delay: 0.1s; }
+[data-reveal-delay="2"].is-visible { transition-delay: 0.2s; }
+[data-reveal-delay="3"].is-visible { transition-delay: 0.32s; }
+[data-reveal-delay="4"].is-visible { transition-delay: 0.46s; }
+
+/* ═══════════════════════════════════════
+   NAV
+═══════════════════════════════════════ */
+.nav {
+    position: fixed; inset: 0 0 auto; z-index: 300;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.6rem 2.5rem;
+    transition: padding .4s ease, background .4s ease, border-color .4s ease, box-shadow .4s ease;
+    border-bottom: 1px solid transparent;
+}
+.nav.solid {
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(20px);
+    padding: 0.9rem 2.5rem;
+    border-color: var(--border);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.04);
+}
+.nav.solid .nav-logo-name { color: var(--text); }
+.nav.solid .nav-link      { color: var(--muted); }
+.nav.solid .nav-link:hover{ color: var(--text); }
+.nav.solid .nav-icon      { color: var(--text); }
+
+.nav-logo { display: flex; flex-direction: column; line-height: 1; }
+.nav-logo-name {
+    font-family: var(--serif);
+    font-size: 1.75rem;
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: 0.04em;
+    color: var(--white);
+    transition: color .4s ease;
+    line-height: 1;
+}
+.nav-logo-sub {
+    font-family: var(--sans);
+    font-size: 0.44rem;
+    font-weight: 500;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--gold-l);
+    margin-top: 0.2rem;
+}
+.nav-links {
+    position: absolute; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 2.5rem;
+}
+.nav-link {
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    transition: color .3s ease;
+}
+.nav-link:hover { color: var(--gold-l); }
+.nav-icons { display: flex; gap: 1.25rem; align-items: center; }
+.nav-icon {
+    color: rgba(255,255,255,0.6); display: flex; align-items: center;
+    transition: color .3s ease; position: relative;
+}
+.nav-icon:hover { color: var(--white); }
+.nav.solid .nav-icon { color: var(--text); }
+.nav.solid .nav-icon:hover { color: var(--gold); }
+.cart-pip {
+    position: absolute; top: -6px; right: -8px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--gold); color: var(--black);
+    font-size: 0.42rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+}
+
+/* ═══════════════════════════════════════
+   HERO
+═══════════════════════════════════════ */
+.hero {
+    height: 100svh;
+    min-height: 680px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--dark);
+    overflow: hidden;
+    position: relative;
+}
+
+/* Left: copy */
+.hero-copy {
+    display: flex; flex-direction: column;
+    justify-content: center;
+    padding: 7rem 4rem 8rem 5rem;
+    z-index: 2; position: relative;
+}
+.hero-eyebrow {
+    font-family: var(--sans);
+    font-size: 0.68rem; font-weight: 500;
+    letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--gold-l);
+    display: flex; align-items: center; gap: 0.85rem;
+    margin-bottom: 2.25rem;
+}
+.hero-eyebrow::before {
+    content: ''; display: block;
+    width: 32px; height: 1px; background: var(--gold); opacity: 0.7;
+}
+.hero-h1 {
+    font-family: var(--serif);
+    font-size: clamp(3.6rem, 5.6vw, 7rem);
+    font-weight: 300;
+    font-style: italic;
+    font-optical-sizing: auto;
+    line-height: 1.04;
+    letter-spacing: -0.01em;
+    color: var(--white);
+    margin-bottom: 1.75rem;
+}
+.hero-h1 strong {
+    font-style: normal;
+    font-weight: 200;
+    display: block;
+    color: rgba(255,255,255,0.72);
+    letter-spacing: 0.04em;
+}
+.hero-h1 em {
+    color: var(--gold-l);
+    font-style: italic;
+    font-weight: 400;
+}
+.hero-sub {
+    font-family: var(--sans);
+    font-size: 1rem; font-weight: 300; line-height: 1.85;
+    color: rgba(255,255,255,0.42);
+    max-width: 340px; margin-bottom: 2.25rem;
+}
+.hero-btns { display: flex; gap: 1.1rem; align-items: center; flex-wrap: wrap; }
+.btn-fill {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 1.05rem 2.4rem;
+    background: var(--white); color: var(--black);
+    font-family: var(--sans); font-size: 0.68rem;
+    font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+    transition: background .3s ease, color .3s ease, box-shadow .3s ease;
+}
+.btn-fill:hover { background: var(--gold); color: var(--black); box-shadow: 0 8px 28px rgba(176,138,34,0.28); }
+.btn-ghost-light {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-family: var(--sans); font-size: 0.68rem;
+    font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.38);
+    border-bottom: 1px solid rgba(255,255,255,0.14);
+    padding-bottom: 3px;
+    transition: color .3s ease, border-color .3s ease;
+}
+.btn-ghost-light:hover { color: var(--gold-l); border-color: var(--gold); }
+
+/* Right: product image */
+.hero-img {
+    position: relative; overflow: hidden;
+}
+.hero-img img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    transition: transform 6s ease;
+}
+.hero:hover .hero-img img { transform: scale(1.03); }
+/* Dark gradient overlay on image side */
+.hero-img::before {
+    content: '';
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(90deg, var(--dark) 0%, transparent 20%),
+                linear-gradient(to top, rgba(8,8,8,0.5) 0%, transparent 40%);
+}
+/* Image caption overlay */
+.hero-img-tag {
+    position: absolute; bottom: 2.5rem; left: 2rem; z-index: 2;
+    font-family: var(--sans); font-size: 0.5rem;
+    font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    writing-mode: vertical-rl;
+}
+
+/* Hero bottom stats bar */
+.hero-stats {
+    position: absolute; bottom: 0; left: 0;
+    width: 50%;
+    display: flex; gap: 0;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    z-index: 3;
+}
+.hero-stat {
+    flex: 1; padding: 1.6rem 1.75rem;
+    border-right: 1px solid rgba(255,255,255,0.06);
+}
+.hero-stat:last-child { border-right: none; }
+.hero-stat-n {
+    font-family: var(--serif);
+    font-size: 2.1rem; font-weight: 300; font-style: italic;
+    color: var(--white); line-height: 1;
+}
+.hero-stat-n sup { font-size: 0.75rem; opacity: 0.45; }
+.hero-stat-l {
+    font-family: var(--sans);
+    font-size: 0.58rem; font-weight: 500;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(255,255,255,0.28); margin-top: 0.35rem;
+}
+
+/* ═══════════════════════════════════════
+   MARQUEE
+═══════════════════════════════════════ */
+.marquee {
+    background: #0D0D0D;
+    border-top: 1px solid rgba(255,255,255,0.04);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    padding: 1.05rem 0; overflow: hidden;
+}
+.mq-track {
+    display: flex; width: max-content;
+    animation: mq-run 32s linear infinite;
+}
+.mq-track:hover { animation-play-state: paused; }
+.mq-item {
+    display: flex; align-items: center; gap: 1.5rem;
+    padding: 0 1.75rem; white-space: nowrap;
+    font-family: var(--sans); font-size: 0.65rem;
+    font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    flex-shrink: 0;
+}
+.mq-dot {
+    width: 3px; height: 3px; border-radius: 50%;
+    background: var(--gold); opacity: 0.55; flex-shrink: 0;
+}
+@keyframes mq-run {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+/* ═══════════════════════════════════════
+   INTRO STORY SPLIT
+═══════════════════════════════════════ */
+.story {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 85vh;
+}
+.story-left {
+    position: relative; overflow: hidden; background: var(--dark2);
+    min-height: 520px;
+}
+.story-left img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;
+    transition: transform 0.8s var(--ease);
+}
+.story-left:hover img { transform: scale(1.04); }
+.story-left-overlay {
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 55%);
+}
+.story-left-label {
+    position: absolute; bottom: 2rem; left: 2rem; z-index: 2;
+    font-family: var(--sans); font-size: 0.5rem;
+    font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+}
+
+.story-right {
+    background: var(--white);
+    padding: 6rem 5.5rem;
+    display: flex; flex-direction: column; justify-content: center;
+}
+.eyebrow {
+    font-family: var(--sans); font-size: 0.65rem;
+    font-weight: 600; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--gold);
+}
+.story-right h2 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 300; font-style: italic;
+    font-optical-sizing: auto;
+    line-height: 1.08; letter-spacing: -0.01em;
+    color: var(--text); margin: 1.25rem 0 1.85rem;
+}
+.story-right h2 strong { font-style: normal; font-weight: 300; color: var(--text); }
+.story-right p {
+    font-family: var(--sans); font-size: 0.97rem;
+    font-weight: 300; line-height: 1.92;
+    color: #5C5C5C; margin-bottom: 1.5rem;
+}
+.story-kpis {
+    display: flex; gap: 2.75rem;
+    padding-top: 2.5rem; margin-top: 0.75rem;
+    border-top: 1px solid var(--border);
+}
+.kpi-v {
+    font-family: var(--serif); font-size: 3.2rem;
+    font-weight: 300; font-style: italic;
+    color: var(--text); line-height: 1;
+}
+.kpi-l {
+    font-family: var(--sans); font-size: 0.6rem;
+    font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); margin-top: 0.45rem;
+}
+
+/* ═══════════════════════════════════════
+   WAVELENGTH TABS
+═══════════════════════════════════════ */
+.wavelengths { background: var(--black); }
+.wl-tabs {
+    display: grid; grid-template-columns: repeat(4,1fr);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.wl-tab {
+    padding: 2.25rem 2.5rem;
+    border-right: 1px solid rgba(255,255,255,0.05);
+    cursor: pointer;
+    display: flex; flex-direction: column; gap: 0.7rem;
+    position: relative; transition: background .3s ease;
+}
+.wl-tab:last-child { border-right: none; }
+.wl-tab::after {
+    content: ''; position: absolute; bottom: -1px; left: 0; right: 0;
+    height: 2px; background: currentColor;
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .4s var(--ease);
+}
+.wl-tab.active::after { transform: scaleX(1); }
+.wl-tab:hover { background: rgba(255,255,255,0.02); }
+
+.wl-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.wl-tab.active .wl-dot { box-shadow: 0 0 14px 4px currentColor; }
+.wl-nm {
+    font-family: var(--serif); font-size: 2.4rem;
+    font-weight: 400; font-style: italic;
+    color: var(--white); line-height: 1;
+}
+.wl-name {
+    font-family: var(--sans); font-size: 0.62rem;
+    font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.3); transition: color .3s ease;
+}
+.wl-tab.active .wl-name { color: rgba(255,255,255,0.78); }
+
+.wl-panel { display: none; grid-template-columns: 1fr 1fr; min-height: 540px; }
+.wl-panel.active { display: grid; }
+.wl-panel-text {
+    padding: 5.5rem;
+    display: flex; flex-direction: column; justify-content: center; gap: 2rem;
+}
+.wl-bignm {
+    font-family: var(--serif); font-size: clamp(6rem,12vw,13rem);
+    font-weight: 400; font-style: italic;
+    line-height: 0.82; opacity: 0.07; letter-spacing: -0.01em;
+}
+.wl-title {
+    font-family: var(--serif);
+    font-size: clamp(2.6rem,4.2vw,4.8rem);
+    font-weight: 300; font-style: italic;
+    font-optical-sizing: auto;
+    color: var(--white); line-height: 1.1;
+}
+.wl-body {
+    font-family: var(--sans); font-size: 0.95rem;
+    font-weight: 300; line-height: 1.9;
+    color: rgba(255,255,255,0.42); max-width: 380px;
+}
+.wl-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.wl-tag {
+    padding: 0.35rem 0.9rem;
+    border: 1px solid rgba(255,255,255,0.13);
+    font-family: var(--sans); font-size: 0.6rem;
+    font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(255,255,255,0.42);
+}
+.wl-panel-img {
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+}
+.wl-panel-img img {
+    width: 100%; height: 100%; object-fit: cover;
+    opacity: 0.55; transition: opacity .4s ease;
+    mix-blend-mode: luminosity;
+}
+.wl-panel.active .wl-panel-img img { opacity: 0.65; }
+/* Glow circles when no image */
+.wl-circles { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+.wl-c {
+    position: absolute; border-radius: 50%;
+    opacity: 0.07; animation: wl-pulse 4s ease-in-out infinite;
+}
+.wl-c:nth-child(2) { animation-delay: .8s; }
+.wl-c:nth-child(3) { animation-delay: 1.6s; }
+@keyframes wl-pulse {
+    0%,100% { transform: scale(1); opacity: .07; }
+    50% { transform: scale(1.05); opacity: .12; }
+}
+
+/* ═══════════════════════════════════════
+   MODES — HORIZONTAL DRAG SCROLL
+═══════════════════════════════════════ */
+.modes { background: var(--cream); padding: 7.5rem 0; overflow: hidden; }
+.modes-head {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    padding: 0 3rem; margin-bottom: 3rem;
+}
+.modes-head h2 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 5.2vw, 5.4rem);
+    font-weight: 300; font-style: italic;
+    font-optical-sizing: auto;
+    color: var(--text); line-height: 1.06; margin-top: 0.65rem;
+}
+.modes-hint {
+    font-family: var(--sans); font-size: 0.68rem;
+    font-weight: 400; color: var(--muted);
+    display: flex; align-items: center; gap: 0.45rem; padding-bottom: 0.25rem;
+}
+.modes-track {
+    display: flex; overflow-x: auto;
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    scrollbar-width: none; cursor: grab;
+}
+.modes-track::-webkit-scrollbar { display: none; }
+.modes-track.is-dragging { cursor: grabbing; user-select: none; }
+.mode-c {
+    flex: 0 0 340px; padding: 3rem 2.5rem;
+    background: var(--white); border-right: 1px solid var(--border);
+    transition: background .3s ease; position: relative;
+}
+.mode-c:first-child { border-left: 1px solid var(--border); }
+.mode-c:hover { background: #FDFCF9; }
+
+.mode-n {
+    font-family: var(--serif); font-size: 5rem;
+    font-weight: 300; color: rgba(0,0,0,0.04);
+    line-height: 1; margin-bottom: 1.2rem;
+}
+.mode-leds { display: flex; gap: 0.45rem; margin-bottom: 1.1rem; }
+.m-led { width: 10px; height: 10px; border-radius: 50%; }
+.ml-y { background: #E8B840; } .ml-r { background: #E84848; }
+.ml-n { background: #C040E8; } .ml-b { background: #4870E8; }
+.mode-name {
+    font-family: var(--serif); font-size: 1.85rem;
+    font-weight: 300; font-style: italic;
+    color: var(--text); line-height: 1.2; margin-bottom: 0.4rem;
+}
+.mode-wl {
+    font-family: var(--sans); font-size: 0.62rem;
+    font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 1.2rem;
+}
+.mode-desc {
+    font-family: var(--sans); font-size: 0.87rem;
+    font-weight: 300; line-height: 1.82; color: #646464;
+}
+.mode-time {
+    position: absolute; top: 2.25rem; right: 2.25rem;
+    font-family: var(--sans); font-size: 0.6rem;
+    font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold);
+}
+
+/* ═══════════════════════════════════════
+   FEATURE ROWS
+═══════════════════════════════════════ */
+.features { background: var(--white); }
+.feat-row {
+    display: grid; grid-template-columns: 1fr 1fr; min-height: 560px;
+}
+.feat-row:nth-child(even) { direction: rtl; }
+.feat-row:nth-child(even) > * { direction: ltr; }
+
+.feat-img-wrap {
+    position: relative; overflow: hidden;
+    background: #111; min-height: 400px;
+}
+.feat-img-wrap img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center;
+    transition: transform .7s var(--ease); opacity: 0.85;
+}
+.feat-img-wrap:hover img { transform: scale(1.04); opacity: 0.95; }
+.feat-img-tag {
+    position: absolute; bottom: 2rem; right: 2rem; z-index: 2;
+    font-family: var(--sans); font-size: 0.48rem;
+    font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+}
+
+.feat-text {
+    padding: 5.5rem 5rem;
+    display: flex; flex-direction: column; justify-content: center;
+    background: var(--white);
+}
+.feat-text h3 {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 4vw, 4.4rem);
+    font-weight: 300; font-style: italic;
+    font-optical-sizing: auto;
+    color: var(--text); line-height: 1.12; margin: 0.8rem 0 1.35rem;
+}
+.feat-text h3 strong { font-style: normal; font-weight: 300; }
+.feat-text p {
+    font-family: var(--sans); font-size: 0.95rem;
+    font-weight: 300; line-height: 1.92;
+    color: #5A5A5A; max-width: 390px; margin-bottom: 2.5rem;
+}
+.feat-stats {
+    display: flex; gap: 2.75rem;
+    padding-top: 2rem; border-top: 1px solid var(--border);
+}
+.fs-v {
+    font-family: var(--serif); font-size: 2.6rem;
+    font-weight: 300; font-style: italic;
+    color: var(--text); line-height: 1;
+}
+.fs-l {
+    font-family: var(--sans); font-size: 0.6rem;
+    font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); margin-top: 0.42rem;
+}
+
+/* ═══════════════════════════════════════
+   SHOP / PRODUCT BUY BOX
+═══════════════════════════════════════ */
+.shop { background: var(--dark); padding: 8rem 3rem; }
+.shop-inner {
+    max-width: 1080px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+}
+.shop-img-box {
+    position: relative; overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.07);
+    aspect-ratio: 1;
+}
+.shop-img-box img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center;
+    transition: transform .7s var(--ease); opacity: 0.88;
+}
+.shop-img-box:hover img { transform: scale(1.03); }
+.shop-img-box::before {
+    content: ''; position: absolute; inset: 0; z-index: 1;
+    background: radial-gradient(ellipse at 50% 40%, rgba(176,138,34,0.06), transparent 65%);
+}
+
+.shop-info { }
+.shop-name {
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 4vw, 4.8rem);
+    font-weight: 300; font-style: italic;
+    font-optical-sizing: auto;
+    color: var(--white); line-height: 1.1;
+    margin: 0.8rem 0 1.35rem;
+}
+.shop-desc {
+    font-family: var(--sans); font-size: 0.95rem;
+    font-weight: 300; line-height: 1.92;
+    color: rgba(255,255,255,0.38); margin-bottom: 2.5rem;
+}
+.shop-specs { margin-bottom: 2.5rem; }
+.shop-spec {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.055); font-size: 0.87rem;
+}
+.shop-spec-l {
+    font-family: var(--sans); font-size: 0.62rem;
+    font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+}
+.shop-spec-v { color: rgba(255,255,255,0.58); }
+.shop-price {
+    display: flex; align-items: baseline; gap: 0.4rem; margin-bottom: 1.75rem;
+}
+.shop-curr {
+    font-family: var(--serif); font-size: 1.5rem;
+    font-weight: 300; font-style: italic;
+    color: rgba(255,255,255,0.3);
+}
+.shop-amt {
+    font-family: var(--serif); font-size: 5rem;
+    font-weight: 300; font-style: italic;
+    color: var(--white); line-height: 1;
+}
+.shop-note {
+    font-family: var(--sans); font-size: 0.65rem;
+    color: rgba(255,255,255,0.22);
+}
+.shop-add {
+    width: 100%; padding: 1.2rem;
+    background: var(--white); color: var(--black);
+    font-family: var(--sans); font-size: 0.7rem;
+    font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+    transition: background .3s ease, color .3s ease, box-shadow .3s ease;
+    margin-bottom: 0.7rem;
+}
+.shop-add:hover { background: var(--gold); color: var(--black); box-shadow: 0 8px 28px rgba(176,138,34,0.25); }
+.shop-buy {
+    width: 100%; padding: 1.2rem;
+    background: transparent; color: rgba(255,255,255,0.36);
+    font-family: var(--sans); font-size: 0.7rem;
+    font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.12);
+    transition: border-color .3s ease, color .3s ease;
+}
+.shop-buy:hover { border-color: var(--gold); color: var(--gold-l); }
+
+/* ═══════════════════════════════════════
+   RESULTS — B/A + REVIEWS
+═══════════════════════════════════════ */
+.results { background: var(--cream); padding: 8rem 0; }
+.results-inner { max-width: 1100px; margin: 0 auto; padding: 0 3rem; }
+.results-head { margin-bottom: 4.5rem; }
+.results-head h2 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 300; font-style: italic;
+    font-optical-sizing: auto;
+    color: var(--text); line-height: 1.06; margin: 0.8rem 0 0.7rem;
+}
+.results-head p { font-family: var(--sans); font-size: 0.85rem; color: var(--muted); }
+
+/* Before/after grid */
+.ba-grid {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 1.5px; background: var(--border); margin-bottom: 5.5rem;
+}
+.ba-card { background: var(--white); overflow: hidden; }
+.ba-split {
+    display: grid; grid-template-columns: 1fr 1fr;
+    position: relative; overflow: hidden; aspect-ratio: 3/4;
+}
+.ba-before-img, .ba-after-img {
+    width: 100%; height: 100%; object-fit: cover; object-position: top center;
+}
+/* fallback gradient backgrounds if image fails */
+.ba-before { background: linear-gradient(160deg,#c4b2a5,#a8968a); }
+.ba-after  { background: linear-gradient(160deg,#ead5c8,#cfbcb0); }
+.ba-label {
+    position: absolute; bottom: 0.7rem; z-index: 2;
+    font-family: var(--sans); font-size: 0.46rem;
+    font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+    background: rgba(0,0,0,0.2); padding: 0.15rem 0.5rem;
+}
+.ba-label.b { left: 0.75rem; }
+.ba-label.a { right: 0.75rem; }
+.ba-line {
+    position: absolute; top: 0; bottom: 0; left: 50%;
+    width: 1.5px; background: rgba(255,255,255,0.6); z-index: 1;
+}
+.ba-meta { padding: 1.5rem 1.75rem; }
+.ba-weeks {
+    font-family: var(--sans); font-size: 0.65rem;
+    font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.25rem;
+}
+.ba-name {
+    font-family: var(--serif); font-size: 1.45rem;
+    font-weight: 300; font-style: italic;
+    color: var(--text); margin-bottom: 0.3rem;
+}
+.ba-result { font-family: var(--sans); font-size: 0.85rem; font-weight: 300; color: #646464; line-height: 1.65; }
+
+/* Testimonials */
+.testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2.5rem; }
+.testi-card { padding-top: 2rem; border-top: 1px solid var(--border); }
+.t-stars { display: flex; gap: 0.18rem; margin-bottom: 1.25rem; }
+.t-star { font-size: 0.65rem; color: var(--gold); }
+.t-q {
+    font-family: var(--serif); font-size: 1.25rem;
+    font-style: italic; font-weight: 300;
+    font-optical-sizing: auto;
+    line-height: 1.7; color: var(--text); margin-bottom: 1.6rem;
+}
+.t-who {
+    font-family: var(--sans); font-size: 0.65rem;
+    font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+}
+.t-who em { font-style: normal; color: var(--gold); }
+
+/* ═══════════════════════════════════════
+   CERTIFICATIONS
+═══════════════════════════════════════ */
+.certs {
+    background: var(--white);
+    padding: 4.5rem 3rem;
+    border-top: 1px solid var(--border);
+}
+.certs-inner { max-width: 820px; margin: 0 auto; text-align: center; }
+.certs-title {
+    font-family: var(--sans); font-size: 0.62rem;
+    font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 2.75rem;
+}
+.certs-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.65rem 1.5rem; }
+.cert-b {
+    padding: 0.42rem 1rem; border: 1px solid var(--border);
+    font-family: var(--sans); font-size: 0.65rem;
+    font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #8A8A84;
+    transition: border-color .25s ease, color .25s ease;
+}
+.cert-b:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ═══════════════════════════════════════
+   CTA BANNER
+═══════════════════════════════════════ */
+.cta-section {
+    background: var(--dark);
+    padding: 8rem 3rem; text-align: center; position: relative; overflow: hidden;
+}
+.cta-section::before {
+    content: ''; position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    width: 55vw; height: 38vh;
+    background: radial-gradient(ellipse, rgba(176,138,34,0.06), transparent);
+    pointer-events: none;
+}
+.cta-section h2 {
+    font-family: var(--serif);
+    font-size: clamp(3.5rem, 6.5vw, 7.5rem);
+    font-weight: 300; font-style: italic;
+    font-optical-sizing: auto;
+    color: var(--white); line-height: 1.04;
+    max-width: 740px; margin: 0.8rem auto 1.5rem; letter-spacing: -0.01em;
+}
+.cta-section h2 em { color: var(--gold-l); }
+.cta-section h2 strong { font-style: normal; }
+.cta-section p {
+    font-family: var(--sans); font-size: 0.88rem;
+    font-weight: 300; color: rgba(255,255,255,0.28); margin-bottom: 3rem;
+}
+.cta-btns { display: flex; gap: 0.9rem; justify-content: center; flex-wrap: wrap; }
+.cta-a {
+    display: inline-block; padding: 1.05rem 2.6rem;
+    background: var(--white); color: var(--black);
+    font-family: var(--sans); font-size: 0.7rem;
+    font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+    transition: background .3s ease, color .3s ease;
+}
+.cta-a:hover { background: var(--gold); color: var(--black); }
+.cta-b {
+    display: inline-block; padding: 1.05rem 2.6rem;
+    background: transparent; color: rgba(255,255,255,0.36);
+    font-family: var(--sans); font-size: 0.7rem;
+    font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.12);
+    transition: border-color .3s ease, color .3s ease;
+}
+.cta-b:hover { border-color: var(--gold); color: var(--gold-l); }
+
+/* ═══════════════════════════════════════
+   NEWSLETTER
+═══════════════════════════════════════ */
+.nl {
+    background: var(--sand); padding: 5rem 3rem; text-align: center;
+}
+.nl h3 {
+    font-family: var(--serif); font-size: 3.2rem;
+    font-weight: 300; font-style: italic;
+    font-optical-sizing: auto;
+    color: var(--text); margin: 0.6rem 0 0.65rem;
+}
+.nl p { font-family: var(--sans); font-size: 0.9rem; font-weight: 300; color: var(--muted); margin-bottom: 2.25rem; }
+.nl-form { display: flex; max-width: 400px; margin: 0 auto; }
+.nl-in {
+    flex: 1; padding: 0.9rem 1.15rem;
+    background: var(--white); border: 1px solid var(--border); border-right: none;
+    font-family: var(--sans); font-size: 0.72rem; color: var(--text); outline: none;
+    transition: border-color .3s ease;
+}
+.nl-in:focus { border-color: var(--gold); }
+.nl-in::placeholder { color: var(--muted); }
+.nl-btn {
+    padding: 0.9rem 1.6rem;
+    background: var(--text); color: var(--white);
+    font-family: var(--sans); font-size: 0.56rem;
+    font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+    transition: background .3s ease;
+}
+.nl-btn:hover { background: var(--gold); }
+.nl-fine { font-family: var(--sans); font-size: 0.54rem; color: var(--muted); margin-top: 0.85rem; }
+
+/* ═══════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════ */
+.footer { background: var(--black); padding: 5.5rem 3rem 2.5rem; color: rgba(255,255,255,0.3); }
+.footer-inner { max-width: 1080px; margin: 0 auto; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3.5rem; margin-bottom: 4rem; }
+.f-brand-name {
+    font-family: var(--serif); font-size: 1.75rem;
+    font-weight: 300; font-style: italic; letter-spacing: 0.04em;
+    color: var(--white); display: block; margin-bottom: 0.25rem; line-height: 1;
+}
+.f-brand-tag {
+    font-family: var(--sans); font-size: 0.44rem;
+    font-weight: 500; letter-spacing: 0.42em; text-transform: uppercase;
+    color: var(--gold); display: block; margin-bottom: 1.6rem;
+}
+.f-desc {
+    font-family: var(--sans); font-size: 0.82rem;
+    font-weight: 300; line-height: 1.82;
+    max-width: 250px; margin-bottom: 1.85rem;
+}
+.f-social { display: flex; gap: 0.65rem; }
+.f-sl {
+    width: 34px; height: 34px; border: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--sans); font-size: 0.6rem; font-weight: 600;
+    transition: border-color .25s ease, color .25s ease;
+}
+.f-sl:hover { border-color: var(--gold); color: var(--gold); }
+.f-col-t {
+    font-family: var(--sans); font-size: 0.58rem;
+    font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(255,255,255,0.52); margin-bottom: 1.5rem;
+}
+.f-links { display: flex; flex-direction: column; gap: 0.75rem; }
+.f-links a { font-family: var(--sans); font-size: 0.82rem; font-weight: 300; transition: color .25s ease; }
+.f-links a:hover { color: rgba(255,255,255,0.65); }
+.f-btm {
+    padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.05);
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;
+}
+.f-copy { font-family: var(--sans); font-size: 0.65rem; }
+.f-legal { display: flex; gap: 1.5rem; }
+.f-legal a { font-family: var(--sans); font-size: 0.65rem; transition: color .25s ease; }
+.f-legal a:hover { color: rgba(255,255,255,0.44); }
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+@media (max-width: 1024px) {
+    .hero { grid-template-columns: 1fr; min-height: 100svh; }
+    .hero-copy { padding: 8rem 3rem 10rem; }
+    .hero-img { position: absolute; inset: 0; z-index: 0; opacity: 0.25; }
+    .hero-img::before { background: linear-gradient(to top, var(--dark) 20%, transparent 70%); }
+    .hero-stats { width: 100%; }
+    .story { grid-template-columns: 1fr; }
+    .story-left { min-height: 380px; }
+    .story-right { padding: 4rem 3rem; }
+    .wl-tabs { grid-template-columns: repeat(2,1fr); }
+    .wl-panel { grid-template-columns: 1fr; }
+    .wl-panel-img { display: none; }
+    .feat-row { grid-template-columns: 1fr; }
+    .feat-row:nth-child(even) { direction: ltr; }
+    .feat-img-wrap { min-height: 340px; }
+    .shop-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .shop-img-box { max-width: 400px; }
+    .ba-grid { grid-template-columns: 1fr 1fr; }
+    .testi-grid { grid-template-columns: 1fr; max-width: 480px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+}
+@media (max-width: 768px) {
+    html { font-size: 15px; }
+    .nav-links { display: none; }
+    .hero-copy { padding: 7rem 1.75rem 8rem; }
+    .hero-h1 { font-size: clamp(2.8rem, 8.5vw, 4.5rem); }
+    .story-right { padding: 3rem 1.75rem; }
+    .story-right h2 { font-size: clamp(2.5rem, 8vw, 4rem); }
+    .feat-text { padding: 3.5rem 2rem; }
+    .feat-text h3 { font-size: clamp(2.2rem, 7vw, 3.5rem); }
+    .modes-head { flex-direction: column; align-items: flex-start; gap: 0.5rem; padding: 0 1.75rem; }
+    .modes-head h2 { font-size: clamp(2.6rem, 8vw, 4rem); }
+    .ba-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .results-inner { padding: 0 1.75rem; }
+    .results-head h2 { font-size: clamp(2.6rem, 8vw, 4rem); }
+    .shop { padding: 6rem 1.75rem; }
+    .shop-inner { padding: 0; }
+    .cta-section h2 { font-size: clamp(3rem, 9vw, 5rem); }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ NAV ══════════════ -->
+<nav class="nav" id="nav">
+    <a href="/" class="nav-logo">
+        <span class="nav-logo-name">Lumea</span>
+        <span class="nav-logo-sub">Luxury Light Therapy</span>
+    </a>
+    <div class="nav-links">
+        <a href="#technology" class="nav-link">Technology</a>
+        <a href="#shop" class="nav-link">Shop</a>
+        <a href="#results" class="nav-link">Results</a>
+        <a href="#" class="nav-link">About</a>
+    </div>
+    <div class="nav-icons">
+        <a href="#" class="nav-icon" aria-label="Search">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </a>
+        <a href="#" class="nav-icon" aria-label="Account">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+        <a href="#" class="nav-icon" aria-label="Cart" style="position:relative;">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <span class="cart-pip">0</span>
+        </a>
+    </div>
+</nav>
+
+
+<!-- ══════════════ HERO ══════════════ -->
+<!-- Left: copy / Right: real product photo from JOVS reference -->
+<section class="hero" id="home">
+    <div class="hero-copy">
+        <p class="hero-eyebrow">4D LED Light Therapy</p>
+        <h1 class="hero-h1">
+            <strong>The light</strong>
+            your skin
+            has been
+            <em>waiting for.</em>
+        </h1>
+        <p class="hero-sub">Clinical-grade LED therapy engineered for luxury home use. Four wavelengths. Six intelligent modes. Visible results in four weeks.</p>
+        <div class="hero-btns">
+            <a href="#shop" class="btn-fill">Shop The Mask — £249</a>
+            <a href="#technology" class="btn-ghost-light">Discover the science</a>
+        </div>
+    </div>
+
+    <!-- Product hero image — replace with Lumea product photo -->
+    <div class="hero-img">
+        <img src="https://ca.jovs.com/cdn/shop/files/MaskViewTEST03_4f80e934-7f92-4483-804e-4b64effbe8e0.jpg"
+             alt="Lumea G11 4D LED Light Therapy Mask"
+             loading="eager">
+        <span class="hero-img-tag">G11 · Lumea LED Mask</span>
+    </div>
+
+    <!-- Stats bar -->
+    <div class="hero-stats">
+        <div class="hero-stat">
+            <div class="hero-stat-n">147<sup>+</sup></div>
+            <div class="hero-stat-l">LED Chips</div>
+        </div>
+        <div class="hero-stat">
+            <div class="hero-stat-n">4</div>
+            <div class="hero-stat-l">Wavelengths</div>
+        </div>
+        <div class="hero-stat">
+            <div class="hero-stat-n">6</div>
+            <div class="hero-stat-l">Smart Modes</div>
+        </div>
+        <div class="hero-stat">
+            <div class="hero-stat-n">10<sup>min</sup></div>
+            <div class="hero-stat-l">Per Session</div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ══════════════ MARQUEE ══════════════ -->
+<div class="marquee">
+    <div class="mq-track">
+        <span class="mq-item">147 LED Chips<span class="mq-dot"></span></span>
+        <span class="mq-item">4 Clinical Wavelengths<span class="mq-dot"></span></span>
+        <span class="mq-item">6 Smart Modes<span class="mq-dot"></span></span>
+        <span class="mq-item">FDA 510(k) Cleared<span class="mq-dot"></span></span>
+        <span class="mq-item">10 Minutes Per Session<span class="mq-dot"></span></span>
+        <span class="mq-item">Free UK Delivery<span class="mq-dot"></span></span>
+        <span class="mq-item">Medical-Grade Silicone<span class="mq-dot"></span></span>
+        <span class="mq-item">30-Day Guarantee<span class="mq-dot"></span></span>
+        <span class="mq-item">10Hz Pulse Function<span class="mq-dot"></span></span>
+        <span class="mq-item">CE &amp; UKCA Certified<span class="mq-dot"></span></span>
+        <!-- duplicate for seamless loop -->
+        <span class="mq-item">147 LED Chips<span class="mq-dot"></span></span>
+        <span class="mq-item">4 Clinical Wavelengths<span class="mq-dot"></span></span>
+        <span class="mq-item">6 Smart Modes<span class="mq-dot"></span></span>
+        <span class="mq-item">FDA 510(k) Cleared<span class="mq-dot"></span></span>
+        <span class="mq-item">10 Minutes Per Session<span class="mq-dot"></span></span>
+        <span class="mq-item">Free UK Delivery<span class="mq-dot"></span></span>
+        <span class="mq-item">Medical-Grade Silicone<span class="mq-dot"></span></span>
+        <span class="mq-item">30-Day Guarantee<span class="mq-dot"></span></span>
+        <span class="mq-item">10Hz Pulse Function<span class="mq-dot"></span></span>
+        <span class="mq-item">CE &amp; UKCA Certified<span class="mq-dot"></span></span>
+    </div>
+</div>
+
+
+<!-- ══════════════ STORY ══════════════ -->
+<section class="story" id="story">
+    <!-- Lifestyle image — person wearing LED mask -->
+    <div class="story-left">
+        <img src="https://ca.jovs.com/cdn/shop/files/Second_pic_EMS_Mask_44e2c519-3616-4095-9e05-795ead8370d9.jpg"
+             alt="Lumea LED Mask in use — luxury at-home skincare"
+             loading="lazy">
+        <div class="story-left-overlay"></div>
+        <span class="story-left-label">The G11 · 4D LED Mask in use</span>
+    </div>
+
+    <div class="story-right">
+        <p class="eyebrow" data-reveal>The Lumea G11</p>
+        <h2 data-reveal data-reveal-delay="1">
+            <em>Science, light,</em><br>
+            <strong>and the art of<br>flawless skin.</strong>
+        </h2>
+        <p data-reveal data-reveal-delay="2">The 4D LED Light Therapy Mask is an innovative, rechargeable phototherapy device designed for professional results at home. Crafted from medical-grade silicone, its 4D curved surface follows every contour of your face — ensuring even, gap-free light coverage.</p>
+        <p data-reveal data-reveal-delay="2">Powered by four clinically-proven wavelengths that penetrate deep into the skin, it stimulates collagen and elastin production at the cellular level — delivering visible anti-aging and skin-rejuvenating results in as few as four weeks.</p>
+        <div class="story-kpis" data-reveal data-reveal-delay="3">
+            <div><div class="kpi-v">147</div><div class="kpi-l">LED Chips</div></div>
+            <div><div class="kpi-v">4</div><div class="kpi-l">Wavelengths</div></div>
+            <div><div class="kpi-v">6</div><div class="kpi-l">Smart Modes</div></div>
+            <div><div class="kpi-v">4wk</div><div class="kpi-l">First Results</div></div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ══════════════ WAVELENGTHS — TABS ══════════════ -->
+<section class="wavelengths" id="technology">
+    <div class="wl-tabs">
+        <button class="wl-tab active" data-wl="yellow" style="color:#E8B840;">
+            <span class="wl-dot" style="background:#E8B840;"></span>
+            <span class="wl-nm">590<span style="font-size:.9rem;opacity:.45;">nm</span></span>
+            <span class="wl-name">Yellow Light</span>
+        </button>
+        <button class="wl-tab" data-wl="red" style="color:#E84848;">
+            <span class="wl-dot" style="background:#E84848;"></span>
+            <span class="wl-nm">633<span style="font-size:.9rem;opacity:.45;">nm</span></span>
+            <span class="wl-name">Deep Red Light</span>
+        </button>
+        <button class="wl-tab" data-wl="nir" style="color:#C040E8;">
+            <span class="wl-dot" style="background:#C040E8;"></span>
+            <span class="wl-nm">850<span style="font-size:.9rem;opacity:.45;">–1072nm</span></span>
+            <span class="wl-name">Near-Infrared</span>
+        </button>
+        <button class="wl-tab" data-wl="blue" style="color:#4870E8;">
+            <span class="wl-dot" style="background:#4870E8;"></span>
+            <span class="wl-nm">415<span style="font-size:.9rem;opacity:.45;">nm</span></span>
+            <span class="wl-name">Blue Light</span>
+        </button>
+    </div>
+
+    <!-- Yellow Panel -->
+    <div class="wl-panel active" id="wl-yellow">
+        <div class="wl-panel-text">
+            <div class="wl-bignm" style="color:#E8B840;">590</div>
+            <h2 class="wl-title">Rejuvenation<br>&amp; Skin Tone</h2>
+            <p class="wl-body">Yellow light balances skin texture, stimulates red blood cells, and reduces redness, swelling, and fine lines. The choice for sensitive, reactive, or uneven skin — leaving a visibly refined, even complexion after every session.</p>
+            <div class="wl-tags">
+                <span class="wl-tag">Even Tone</span>
+                <span class="wl-tag">Redness</span>
+                <span class="wl-tag">Fine Lines</span>
+                <span class="wl-tag">Sensitive Skin</span>
+            </div>
+        </div>
+        <div class="wl-panel-img">
+            <img src="https://ca.jovs.com/cdn/shop/files/Group_2147203045_444c43fd-4f71-4313-a713-8918d163fd39.png"
+                 alt="Yellow LED light therapy" loading="lazy"
+                 style="mix-blend-mode:luminosity;opacity:0.4;object-fit:contain;padding:2rem;">
+            <div class="wl-circles">
+                <div class="wl-c" style="width:420px;height:420px;background:#E8B840;"></div>
+                <div class="wl-c" style="width:290px;height:290px;background:#E8B840;"></div>
+                <div class="wl-c" style="width:160px;height:160px;background:#E8B840;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Red Panel -->
+    <div class="wl-panel" id="wl-red">
+        <div class="wl-panel-text">
+            <div class="wl-bignm" style="color:#E84848;">633</div>
+            <h2 class="wl-title">Anti-Aging<br>&amp; Collagen</h2>
+            <p class="wl-body">The gold-standard anti-aging wavelength. Clinically proven to promote collagen synthesis, tighten skin, and restore natural elasticity — addressing fine lines, wrinkles, and loss of firmness at the cellular level.</p>
+            <div class="wl-tags">
+                <span class="wl-tag">Collagen</span>
+                <span class="wl-tag">Skin Firming</span>
+                <span class="wl-tag">Anti-Wrinkle</span>
+                <span class="wl-tag">Elasticity</span>
+            </div>
+        </div>
+        <div class="wl-panel-img">
+            <img src="https://ca.jovs.com/cdn/shop/files/04_85df671d-d385-43ea-afa3-8e5b3ad2d57b.webp"
+                 alt="Red LED light therapy" loading="lazy"
+                 style="mix-blend-mode:luminosity;opacity:0.45;">
+            <div class="wl-circles">
+                <div class="wl-c" style="width:420px;height:420px;background:#E84848;"></div>
+                <div class="wl-c" style="width:290px;height:290px;background:#E84848;"></div>
+                <div class="wl-c" style="width:160px;height:160px;background:#E84848;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NIR Panel -->
+    <div class="wl-panel" id="wl-nir">
+        <div class="wl-panel-text">
+            <div class="wl-bignm" style="color:#C040E8;">850</div>
+            <h2 class="wl-title">Deep Repair<br>&amp; Restoration</h2>
+            <p class="wl-body">Near-infrared penetrates to the deepest skin layers — beyond any topical product. At 850nm and 1072nm, it regenerates skin, dramatically improves blood microcirculation, and increases moisture retention at the dermis level for lasting plumpness.</p>
+            <div class="wl-tags">
+                <span class="wl-tag">Deep Repair</span>
+                <span class="wl-tag">Circulation</span>
+                <span class="wl-tag">Moisture</span>
+                <span class="wl-tag">Regeneration</span>
+            </div>
+        </div>
+        <div class="wl-panel-img">
+            <img src="https://ca.jovs.com/cdn/shop/files/Group_2147203050_c51e76de-5759-49d8-ac2a-c2e886eeed61.png"
+                 alt="NIR light therapy" loading="lazy"
+                 style="mix-blend-mode:luminosity;opacity:0.4;object-fit:contain;padding:2rem;">
+            <div class="wl-circles">
+                <div class="wl-c" style="width:420px;height:420px;background:#C040E8;"></div>
+                <div class="wl-c" style="width:290px;height:290px;background:#C040E8;"></div>
+                <div class="wl-c" style="width:160px;height:160px;background:#C040E8;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blue Panel -->
+    <div class="wl-panel" id="wl-blue">
+        <div class="wl-panel-text">
+            <div class="wl-bignm" style="color:#4870E8;">415</div>
+            <h2 class="wl-title">Anti-Acne<br>&amp; Clarity</h2>
+            <p class="wl-body">Blue light at 415nm precisely targets acne-causing P. acnes bacteria at the source — without chemicals or irritation. Reduces post-acne inflammation and scarring, and increases skin oxygen for a visibly clearer, healthier complexion within weeks.</p>
+            <div class="wl-tags">
+                <span class="wl-tag">Kills Bacteria</span>
+                <span class="wl-tag">Inflammation</span>
+                <span class="wl-tag">Clears Acne</span>
+                <span class="wl-tag">Scars</span>
+            </div>
+        </div>
+        <div class="wl-panel-img">
+            <img src="https://ca.jovs.com/cdn/shop/files/06_1_8afb297c-ab71-4c00-ba20-ef0ca96ee066.jpg"
+                 alt="Blue LED light therapy" loading="lazy"
+                 style="mix-blend-mode:luminosity;opacity:0.4;">
+            <div class="wl-circles">
+                <div class="wl-c" style="width:420px;height:420px;background:#4870E8;"></div>
+                <div class="wl-c" style="width:290px;height:290px;background:#4870E8;"></div>
+                <div class="wl-c" style="width:160px;height:160px;background:#4870E8;"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ══════════════ 6 MODES ══════════════ -->
+<section class="modes">
+    <div class="modes-head">
+        <div>
+            <p class="eyebrow" data-reveal>Intelligent Skincare</p>
+            <h2 data-reveal data-reveal-delay="1">Six modes.<br>Every concern<br>addressed.</h2>
+        </div>
+        <span class="modes-hint" data-reveal data-reveal-delay="2">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Drag to explore
+        </span>
+    </div>
+
+    <div class="modes-track" id="modesTrack">
+        <div class="mode-c">
+            <div class="mode-n">01</div>
+            <div class="mode-leds"><span class="m-led ml-r"></span></div>
+            <div class="mode-name">Repairing</div>
+            <div class="mode-wl">633nm · Deep Red</div>
+            <p class="mode-desc">Activates skin's natural repair cycle, reduces inflammation, and accelerates healing. Ideal for stressed or post-treatment skin.</p>
+            <span class="mode-time">10 min</span>
+        </div>
+        <div class="mode-c">
+            <div class="mode-n">02</div>
+            <div class="mode-leds"><span class="m-led ml-y"></span><span class="m-led ml-r"></span></div>
+            <div class="mode-name">Rejuvenation</div>
+            <div class="mode-wl">590nm + 633nm</div>
+            <p class="mode-desc">Dual-light blend that stimulates circulation, evens tone, and promotes radiant luminosity for a visibly revitalised complexion.</p>
+            <span class="mode-time">10 min</span>
+        </div>
+        <div class="mode-c">
+            <div class="mode-n">03</div>
+            <div class="mode-leds"><span class="m-led ml-r"></span><span class="m-led ml-n"></span></div>
+            <div class="mode-name">Anti-Aging</div>
+            <div class="mode-wl">633nm + 850/1072nm</div>
+            <p class="mode-desc">The clinical anti-aging protocol. Red and NIR light in tandem — stimulate collagen, reduce fine lines, firm skin texture.</p>
+            <span class="mode-time">10 min</span>
+        </div>
+        <div class="mode-c">
+            <div class="mode-n">04</div>
+            <div class="mode-leds"><span class="m-led ml-y"></span><span class="m-led ml-r"></span><span class="m-led ml-n"></span></div>
+            <div class="mode-name">Morning Skincare</div>
+            <div class="mode-wl">590 + 633 + 850/1072nm</div>
+            <p class="mode-desc">Full-spectrum morning boost. Energises circulation, activates collagen, and primes skin for a radiant natural glow all day.</p>
+            <span class="mode-time">10 min</span>
+        </div>
+        <div class="mode-c">
+            <div class="mode-n">05</div>
+            <div class="mode-leds"><span class="m-led ml-b"></span></div>
+            <div class="mode-name">Anti-Acne</div>
+            <div class="mode-wl">415nm · Blue Light</div>
+            <p class="mode-desc">Pure 415nm targets acne bacteria at the source — without chemicals. Clearer skin, visibly within weeks of daily use.</p>
+            <span class="mode-time">10 min</span>
+        </div>
+        <div class="mode-c">
+            <div class="mode-n">06</div>
+            <div class="mode-leds"><span class="m-led ml-y"></span><span class="m-led ml-r"></span><span class="m-led ml-n"></span><span class="m-led ml-b"></span></div>
+            <div class="mode-name">Bedtime Skincare</div>
+            <div class="mode-wl">Full spectrum · All 4 lights</div>
+            <p class="mode-desc">Sequential full-spectrum overnight treatment that works with skin's repair cycle. Wake to visibly refreshed, restored skin.</p>
+            <span class="mode-time">10 min</span>
+        </div>
+    </div>
+</section>
+
+
+<!-- ══════════════ FEATURE ROWS ══════════════ -->
+<section class="features" id="features">
+
+    <!-- Row 1: 4D Design -->
+    <div class="feat-row">
+        <div class="feat-img-wrap">
+            <img src="https://ca.jovs.com/cdn/shop/files/Mask_group2_b19deed9-4909-489a-aa9d-f442f4da8d31.webp"
+                 alt="Lumea G11 4D curved design" loading="lazy">
+            <span class="feat-img-tag">4D Surface · Product Detail</span>
+        </div>
+        <div class="feat-text">
+            <p class="eyebrow" data-reveal>Design</p>
+            <h3 data-reveal data-reveal-delay="1"><em>4D curved.</em><br><strong>Ultra-thin.<br>Zero gaps.</strong></h3>
+            <p data-reveal data-reveal-delay="2">The G11's 4D curved surface follows every facial contour — ensuring perfectly even light coverage across the entire treatment area. No gaps. No pressure points. Medical-grade silicone that's as comfortable as it is clinical, with an adjustable buckle system for all face shapes.</p>
+            <div class="feat-stats" data-reveal data-reveal-delay="3">
+                <div><div class="fs-v">4D</div><div class="fs-l">Curved Surface</div></div>
+                <div><div class="fs-v">147</div><div class="fs-l">LED Chips</div></div>
+                <div><div class="fs-v">48.51</div><div class="fs-l">mW/cm²</div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Row 2: 10Hz Pulse -->
+    <div class="feat-row">
+        <div class="feat-img-wrap">
+            <img src="https://ca.jovs.com/cdn/shop/files/JP1_2025.jpg"
+                 alt="Lumea pulse function technology" loading="lazy">
+            <span class="feat-img-tag">Pulse Technology · 10Hz</span>
+        </div>
+        <div class="feat-text">
+            <p class="eyebrow" data-reveal>Innovation</p>
+            <h3 data-reveal data-reveal-delay="1"><em>10Hz pulse.</em><br><strong>Amplified<br>results.</strong></h3>
+            <p data-reveal data-reveal-delay="2">Pulsed light at precisely 10Hz places skin cells under controlled oxidative stress — scientifically proven to enhance photon absorption and amplify treatment efficacy. Three brightness levels (50%, 75%, 100%) adapt every session to your skin's current needs.</p>
+            <div class="feat-stats" data-reveal data-reveal-delay="3">
+                <div><div class="fs-v">10Hz</div><div class="fs-l">Pulse Rate</div></div>
+                <div><div class="fs-v">3×</div><div class="fs-l">Brightness Levels</div></div>
+                <div><div class="fs-v">5V</div><div class="fs-l">Type-C USB</div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Row 3: Battery + LCD -->
+    <div class="feat-row">
+        <div class="feat-img-wrap">
+            <img src="https://ca.jovs.com/cdn/shop/files/Second_pic_JP1_P.jpg"
+                 alt="Lumea LCD controller and battery" loading="lazy">
+            <span class="feat-img-tag">LCD Controller · Long Battery</span>
+        </div>
+        <div class="feat-text">
+            <p class="eyebrow" data-reveal>Control</p>
+            <h3 data-reveal data-reveal-delay="1"><em>LCD display.</em><br><strong>Long battery.<br>Total control.</strong></h3>
+            <p data-reveal data-reveal-delay="2">A beautifully minimal LCD display shows your treatment mode, session timer, and intensity at a glance. A 5000mAh battery means weeks of daily sessions on a single charge — so your ritual never skips a beat. Charges via universal Type-C USB.</p>
+            <div class="feat-stats" data-reveal data-reveal-delay="3">
+                <div><div class="fs-v">5000</div><div class="fs-l">mAh Battery</div></div>
+                <div><div class="fs-v">6</div><div class="fs-l">Preset Modes</div></div>
+                <div><div class="fs-v">10'</div><div class="fs-l">Auto-Timer</div></div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<!-- ══════════════ SHOP ══════════════ -->
+<section class="shop" id="shop">
+    <div class="shop-inner">
+        <div class="shop-img-box" data-reveal>
+            <img src="https://ca.jovs.com/cdn/shop/files/Group_2147203045_444c43fd-4f71-4313-a713-8918d163fd39.png"
+                 alt="Lumea G11 4D LED Mask — complete kit"
+                 loading="lazy"
+                 style="object-fit:contain;padding:2rem;background:#0F0F0F;">
+        </div>
+        <div class="shop-info">
+            <p class="eyebrow" data-reveal style="color:rgba(176,138,34,0.7);">Featured Product</p>
+            <h2 class="shop-name" data-reveal data-reveal-delay="1"><em>Lumea G11</em><br>4D LED Mask</h2>
+            <p class="shop-desc" data-reveal data-reveal-delay="2">Medical-grade silicone, four clinically-proven wavelengths, and six intelligent modes — one mask that delivers visible results in as few as four weeks.</p>
+            <div class="shop-specs" data-reveal data-reveal-delay="2">
+                <div class="shop-spec"><span class="shop-spec-l">LED Count</span><span class="shop-spec-v">147 Chips (90 Face + 57 Neck)</span></div>
+                <div class="shop-spec"><span class="shop-spec-l">Wavelengths</span><span class="shop-spec-v">415 · 590 · 633 · 850/1072nm</span></div>
+                <div class="shop-spec"><span class="shop-spec-l">Battery</span><span class="shop-spec-v">5000mAh · Type-C USB</span></div>
+                <div class="shop-spec"><span class="shop-spec-l">Material</span><span class="shop-spec-v">Medical-Grade Silicone</span></div>
+                <div class="shop-spec"><span class="shop-spec-l">Certifications</span><span class="shop-spec-v">FDA · CE · UKCA · ISO 13485</span></div>
+            </div>
+            <div class="shop-price" data-reveal data-reveal-delay="3">
+                <span class="shop-curr">£</span>
+                <span class="shop-amt">249</span>
+                <span class="shop-note">&nbsp;&nbsp;Free UK delivery · 30-day guarantee</span>
+            </div>
+            <button class="shop-add" data-reveal data-reveal-delay="3">Add to Bag</button>
+            <button class="shop-buy" data-reveal data-reveal-delay="4">Buy It Now</button>
+        </div>
+    </div>
+</section>
+
+
+<!-- ══════════════ RESULTS ══════════════ -->
+<section class="results" id="results">
+    <div class="results-inner">
+        <div class="results-head" data-reveal>
+            <p class="eyebrow">Real Results</p>
+            <h2>Visible transformation.<br><em>Clinically proven.</em></h2>
+            <p>Results shown after consistent daily use. Individual results may vary.</p>
+        </div>
+
+        <div class="ba-grid">
+            <!-- BA Card 1: uses real JOVS before/after image -->
+            <div class="ba-card">
+                <div class="ba-split">
+                    <img class="ba-before-img" src="https://ca.jovs.com/cdn/shop/files/BA_Mask_02_300x300.webp"
+                         alt="Before LED therapy" loading="lazy"
+                         style="object-position:left center;">
+                    <img class="ba-after-img" src="https://ca.jovs.com/cdn/shop/files/BA_Mask_02_300x300.webp"
+                         alt="After LED therapy" loading="lazy"
+                         style="object-position:right center;">
+                    <span class="ba-label b">Before</span>
+                    <span class="ba-label a">After</span>
+                    <div class="ba-line"></div>
+                </div>
+                <div class="ba-meta">
+                    <p class="ba-weeks">4 Weeks · Anti-Aging Mode</p>
+                    <p class="ba-name">Sarah, 48</p>
+                    <p class="ba-result">Visible reduction in fine lines and improved firmness around jaw and cheeks.</p>
+                </div>
+            </div>
+
+            <div class="ba-card">
+                <div class="ba-split">
+                    <img class="ba-before-img" src="https://ca.jovs.com/cdn/shop/files/BA_JW1_03_300x300.webp"
+                         alt="Before LED therapy" loading="lazy"
+                         style="object-position:left center;">
+                    <img class="ba-after-img" src="https://ca.jovs.com/cdn/shop/files/BA_JW1_03_300x300.webp"
+                         alt="After LED therapy" loading="lazy"
+                         style="object-position:right center;">
+                    <span class="ba-label b">Before</span>
+                    <span class="ba-label a">After</span>
+                    <div class="ba-line"></div>
+                </div>
+                <div class="ba-meta">
+                    <p class="ba-weeks">3 Weeks · Anti-Acne Mode</p>
+                    <p class="ba-name">Amira, 26</p>
+                    <p class="ba-result">Dramatically clearer skin with reduced redness and fewer active breakouts.</p>
+                </div>
+            </div>
+
+            <div class="ba-card">
+                <div class="ba-split">
+                    <img class="ba-before-img" src="https://ca.jovs.com/cdn/shop/files/BA_JP1_P_02_300x300.webp"
+                         alt="Before LED therapy" loading="lazy"
+                         style="object-position:left center;">
+                    <img class="ba-after-img" src="https://ca.jovs.com/cdn/shop/files/BA_JP1_P_02_300x300.webp"
+                         alt="After LED therapy" loading="lazy"
+                         style="object-position:right center;">
+                    <span class="ba-label b">Before</span>
+                    <span class="ba-label a">After</span>
+                    <div class="ba-line"></div>
+                </div>
+                <div class="ba-meta">
+                    <p class="ba-weeks">6 Weeks · Rejuvenation Mode</p>
+                    <p class="ba-name">Louise, 55</p>
+                    <p class="ba-result">Remarkable improvement in luminosity and texture. Friends asked if she'd had a clinic facial.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonials -->
+        <div class="testi-grid">
+            <div class="testi-card" data-reveal>
+                <div class="t-stars"><span class="t-star">★</span><span class="t-star">★</span><span class="t-star">★</span><span class="t-star">★</span><span class="t-star">★</span></div>
+                <p class="t-q">I've spent thousands at clinics for results I couldn't sustain. Lumea has given me better skin than anything I've tried professionally — and I use it in my pyjamas.</p>
+                <p class="t-who">Charlotte H. &nbsp;<em>Verified · London</em></p>
+            </div>
+            <div class="testi-card" data-reveal data-reveal-delay="1">
+                <div class="t-stars"><span class="t-star">★</span><span class="t-star">★</span><span class="t-star">★</span><span class="t-star">★</span><span class="t-star">★</span></div>
+                <p class="t-q">The packaging alone made me feel I'd received something truly special. But it's the results that have kept me loyal. My skin looks a decade younger after six weeks.</p>
+                <p class="t-who">Natalie W. &nbsp;<em>Verified · Manchester</em></p>
+            </div>
+            <div class="testi-card" data-reveal data-reveal-delay="2">
+                <div class="t-stars"><span class="t-star">★</span><span class="t-star">★</span><span class="t-star">★</span><span class="t-star">★</span><span class="t-star">★</span></div>
+                <p class="t-q">As a dermatologist, I'm rarely impressed by consumer devices. Lumea is the exception. The wavelength accuracy and 10Hz pulse function are genuinely clinical-grade.</p>
+                <p class="t-who">Dr. Priya M. &nbsp;<em>Consultant Dermatologist</em></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ══════════════ CERTIFICATIONS ══════════════ -->
+<div class="certs">
+    <div class="certs-inner">
+        <p class="certs-title">Globally Certified · Clinically Tested · Dermatologist Approved</p>
+        <div class="certs-row">
+            <span class="cert-b">FDA 510(k)</span>
+            <span class="cert-b">CE Mark</span>
+            <span class="cert-b">UKCA</span>
+            <span class="cert-b">RoHS</span>
+            <span class="cert-b">FCC</span>
+            <span class="cert-b">ISO 13485</span>
+            <span class="cert-b">ISO 9001</span>
+            <span class="cert-b">EU-MDR</span>
+            <span class="cert-b">TGA</span>
+            <span class="cert-b">IEC 60601</span>
+            <span class="cert-b">MDSAP</span>
+            <span class="cert-b">SAA</span>
+            <span class="cert-b">SGS</span>
+            <span class="cert-b">ETL</span>
+        </div>
+    </div>
+</div>
+
+
+<!-- ══════════════ CTA ══════════════ -->
+<section class="cta-section">
+    <p class="eyebrow" data-reveal style="color:rgba(176,138,34,0.65);">Begin Your Transformation</p>
+    <h2 data-reveal data-reveal-delay="1">
+        <em>Your skin's</em> most<br>
+        luminous chapter<br>
+        <strong>starts now.</strong>
+    </h2>
+    <p data-reveal data-reveal-delay="2">Free UK delivery · 30-day results guarantee · Discreet luxury packaging</p>
+    <div class="cta-btns" data-reveal data-reveal-delay="3">
+        <a href="#shop" class="cta-a">Shop The G11 Mask</a>
+        <a href="#technology" class="cta-b">Learn The Science</a>
+    </div>
+</section>
+
+
+<!-- ══════════════ NEWSLETTER ══════════════ -->
+<section class="nl">
+    <p class="eyebrow" data-reveal>Exclusive Access</p>
+    <h3 data-reveal data-reveal-delay="1">The Lumea Inner Circle</h3>
+    <p data-reveal data-reveal-delay="2">Early access to new launches, expert skincare guides, and exclusive member offers.</p>
+    <form class="nl-form" onsubmit="return false;" data-reveal data-reveal-delay="3">
+        <input class="nl-in" type="email" placeholder="Your email address">
+        <button class="nl-btn" type="submit">Join</button>
+    </form>
+    <p class="nl-fine" data-reveal data-reveal-delay="4">By subscribing you agree to our Privacy Policy. Unsubscribe at any time.</p>
+</section>
+
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-grid">
+            <div>
+                <span class="f-brand-name">Lumea</span>
+                <span class="f-brand-tag">Luxury Light Therapy</span>
+                <p class="f-desc">Professional-grade LED light therapy for the modern skincare ritual — engineered with clinical precision, designed with uncompromising luxury.</p>
+                <div class="f-social">
+                    <a href="#" class="f-sl">ig</a>
+                    <a href="#" class="f-sl">fb</a>
+                    <a href="#" class="f-sl">tt</a>
+                    <a href="#" class="f-sl">yt</a>
+                </div>
+            </div>
+            <div>
+                <p class="f-col-t">Shop</p>
+                <ul class="f-links">
+                    <li><a href="#">The G11 Mask</a></li>
+                    <li><a href="#">Bundles</a></li>
+                    <li><a href="#">Accessories</a></li>
+                    <li><a href="#">Gift Sets</a></li>
+                </ul>
+            </div>
+            <div>
+                <p class="f-col-t">Learn</p>
+                <ul class="f-links">
+                    <li><a href="#">The Science</a></li>
+                    <li><a href="#">How It Works</a></li>
+                    <li><a href="#">Clinical Research</a></li>
+                    <li><a href="#">Skincare Journal</a></li>
+                </ul>
+            </div>
+            <div>
+                <p class="f-col-t">Support</p>
+                <ul class="f-links">
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Shipping &amp; Returns</a></li>
+                    <li><a href="#">Warranty</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="f-btm">
+            <p class="f-copy">© 2026 Lumea Luxury Light Therapy. All rights reserved.</p>
+            <div class="f-legal">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script>
+/* ── Nav scroll ── */
+const nav = document.getElementById('nav');
+const onScroll = () => nav.classList.toggle('solid', window.scrollY > 60);
+window.addEventListener('scroll', onScroll, { passive: true });
+
+/* ── Scroll reveal ── */
+const ro = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            const delay = e.target.dataset.revealDelay;
+            if (delay) e.target.style.transitionDelay = (parseInt(delay) * 0.12) + 's';
+            e.target.classList.add('is-visible');
+            ro.unobserve(e.target);
+        }
+    });
+}, { threshold: 0.1, rootMargin: '0px 0px -32px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+/* ── Wavelength tabs ── */
+document.querySelectorAll('.wl-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        const id = tab.dataset.wl;
+        document.querySelectorAll('.wl-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.wl-panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        const panel = document.getElementById('wl-' + id);
+        if (panel) panel.classList.add('active');
+    });
+});
+
+/* ── Modes drag-scroll ── */
+const track = document.getElementById('modesTrack');
+let isDragging = false, startX, scrollLeft;
+track.addEventListener('mousedown', e => {
+    isDragging = true;
+    track.classList.add('is-dragging');
+    startX = e.pageX - track.offsetLeft;
+    scrollLeft = track.scrollLeft;
+});
+document.addEventListener('mouseup', () => { isDragging = false; track.classList.remove('is-dragging'); });
+track.addEventListener('mousemove', e => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - track.offsetLeft;
+    track.scrollLeft = scrollLeft - (x - startX) * 1.5;
+});
+</script>
+
+</body>
+</html>
