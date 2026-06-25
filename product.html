@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumea G11 4D LED Light Therapy Mask — LUMEA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,200;1,9..144,300;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════ */
+:root {
+    --black:  #080808;
+    --dark:   #111111;
+    --white:  #FFFFFF;
+    --cream:  #F5F2EC;
+    --sand:   #EDEAE3;
+    --gold:   #B08A22;
+    --gold-l: #D4AA44;
+    --text:   #1C1C1C;
+    --muted:  #80807A;
+    --border: #DEDAD2;
+    --serif: 'Fraunces', 'Palatino Linotype', Georgia, serif;
+    --sans:  'Plus Jakarta Sans', 'Helvetica Neue', system-ui, sans-serif;
+    --ease:  cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 17px; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-optical-sizing: auto; }
+body { font-family: var(--sans); background: var(--cream); color: var(--text); overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+button { border: none; background: none; cursor: pointer; font-family: inherit; }
+img { display: block; max-width: 100%; object-fit: cover; }
+
+[data-reveal] { opacity: 0; transform: translateY(32px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
+[data-reveal].is-visible { opacity: 1; transform: none; }
+[data-reveal-delay="1"].is-visible { transition-delay: 0.1s; }
+[data-reveal-delay="2"].is-visible { transition-delay: 0.2s; }
+[data-reveal-delay="3"].is-visible { transition-delay: 0.32s; }
+[data-reveal-delay="4"].is-visible { transition-delay: 0.46s; }
+
+/* ── NAV ── */
+.nav {
+    position: fixed; inset: 0 0 auto; z-index: 300;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.9rem 2.5rem;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.04);
+}
+.nav-logo { display: flex; flex-direction: column; line-height: 1; }
+.nav-logo-name { font-family: var(--serif); font-size: 1.75rem; font-weight: 300; font-style: italic; letter-spacing: 0.04em; color: var(--text); line-height: 1; }
+.nav-logo-sub { font-family: var(--sans); font-size: 0.44rem; font-weight: 500; letter-spacing: 0.42em; text-transform: uppercase; color: var(--gold-l); margin-top: 0.2rem; }
+.nav-links { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 2.5rem; }
+.nav-link { font-family: var(--sans); font-size: 0.65rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); transition: color .3s ease; }
+.nav-link:hover { color: var(--gold-l); }
+.nav-link.active { color: var(--text); }
+.nav-icons { display: flex; gap: 1.25rem; align-items: center; }
+.nav-icon { color: var(--text); display: flex; align-items: center; transition: color .3s ease; position: relative; }
+.nav-icon:hover { color: var(--gold); }
+.cart-pip { position: absolute; top: -6px; right: -8px; width: 14px; height: 14px; border-radius: 50%; background: var(--gold); color: var(--black); font-size: 0.42rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+
+/* ── STICKY BAR ── */
+.sticky-bar {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+    background: var(--dark); border-top: 1px solid rgba(255,255,255,0.07);
+    padding: 0.9rem 2.5rem;
+    display: flex; align-items: center; gap: 1.5rem;
+    transform: translateY(100%);
+    transition: transform 0.45s var(--ease);
+}
+.sticky-bar.visible { transform: translateY(0); }
+.sticky-bar-name { font-family: var(--serif); font-size: 1.05rem; font-weight: 300; font-style: italic; color: var(--white); flex-shrink: 0; }
+.sticky-bar-stars { display: flex; align-items: center; gap: 0.35rem; flex-shrink: 0; }
+.sticky-bar-stars-row { display: flex; gap: 0.1rem; }
+.sticky-bar-stars-row span { color: var(--gold); font-size: 0.6rem; }
+.sticky-bar-stars em { font-family: var(--sans); font-size: 0.58rem; color: rgba(255,255,255,0.3); font-style: normal; }
+.sticky-bar-price { font-family: var(--serif); font-size: 1.5rem; font-weight: 300; font-style: italic; color: var(--white); margin-left: auto; flex-shrink: 0; }
+.sticky-bar-btn { padding: 0.65rem 1.75rem; background: var(--white); color: var(--black); font-family: var(--sans); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; transition: background .3s ease; flex-shrink: 0; }
+.sticky-bar-btn:hover { background: var(--gold); }
+
+/* ── BREADCRUMB ── */
+.breadcrumb { padding: 5.5rem 3rem 0; display: flex; align-items: center; gap: 0.55rem; }
+.bc-item { font-family: var(--sans); font-size: 0.6rem; font-weight: 400; letter-spacing: 0.06em; color: var(--muted); transition: color .2s ease; }
+.bc-item:hover { color: var(--text); }
+.bc-sep { color: var(--border); }
+.bc-item.current { color: var(--text); font-weight: 500; pointer-events: none; }
+
+/* ── PDP HERO ── */
+.pdp-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; padding: 2rem 3rem 7rem; max-width: 1340px; margin: 0 auto; align-items: start; }
+
+.pdp-gallery { display: flex; gap: 1rem; position: sticky; top: 5.5rem; }
+.pdp-thumbs { display: flex; flex-direction: column; gap: 0.6rem; flex-shrink: 0; }
+.pdp-thumb { width: 70px; height: 86px; overflow: hidden; border: 1.5px solid var(--border); cursor: pointer; transition: border-color .25s ease; flex-shrink: 0; }
+.pdp-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.pdp-thumb.active { border-color: var(--text); }
+.pdp-thumb:hover { border-color: var(--gold); }
+.pdp-main-img { flex: 1; position: relative; overflow: hidden; background: var(--sand); aspect-ratio: 3/4; }
+.pdp-main-img img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: opacity .3s ease, transform .7s var(--ease); }
+.pdp-main-img:hover img { transform: scale(1.03); }
+.pdp-main-img-badge { position: absolute; top: 1.25rem; left: 1.25rem; z-index: 2; padding: 0.28rem 0.75rem; background: var(--gold); color: var(--black); font-family: var(--sans); font-size: 0.5rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
+
+/* Buybox */
+.pdp-buybox { padding-top: 0.25rem; }
+.eyebrow { font-family: var(--sans); font-size: 0.65rem; font-weight: 600; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold); }
+.pdp-name { font-family: var(--serif); font-size: clamp(3rem, 4.5vw, 5rem); font-weight: 300; font-style: italic; font-optical-sizing: auto; color: var(--text); line-height: 1.06; margin: 0.6rem 0 0.2rem; }
+.pdp-subtitle { font-family: var(--sans); font-size: 0.75rem; font-weight: 400; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 1.25rem; }
+
+.pdp-stars { display: flex; align-items: center; gap: 0.65rem; margin-bottom: 1.75rem; padding-bottom: 1.75rem; border-bottom: 1px solid var(--border); }
+.pdp-star-row { display: flex; gap: 0.12rem; }
+.pdp-star { font-size: 0.7rem; color: var(--gold); }
+.pdp-rating { font-family: var(--serif); font-size: 1rem; font-weight: 300; font-style: italic; color: var(--text); }
+.pdp-review-count { font-family: var(--sans); font-size: 0.6rem; color: var(--muted); border-bottom: 1px solid currentColor; padding-bottom: 1px; }
+
+.pdp-price-row { display: flex; align-items: baseline; gap: 0.85rem; margin-bottom: 0.45rem; flex-wrap: wrap; }
+.pdp-price-now { font-family: var(--serif); font-size: 3.4rem; font-weight: 300; font-style: italic; color: var(--text); line-height: 1; }
+.pdp-price-was { font-family: var(--sans); font-size: 0.88rem; font-weight: 300; color: var(--muted); text-decoration: line-through; }
+.pdp-price-save { padding: 0.2rem 0.55rem; background: rgba(176,138,34,0.1); color: var(--gold); font-family: var(--sans); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+.pdp-price-note { font-family: var(--sans); font-size: 0.65rem; font-weight: 300; color: var(--muted); margin-bottom: 1.75rem; }
+
+.pdp-bullets { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem; margin-bottom: 1.75rem; }
+.pdp-bullet { display: flex; align-items: flex-start; gap: 0.55rem; font-family: var(--sans); font-size: 0.78rem; font-weight: 300; color: #4A4A4A; line-height: 1.5; }
+.pdp-bullet::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 0.44rem; }
+
+.pdp-qty-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.9rem; }
+.pdp-qty-label { font-family: var(--sans); font-size: 0.6rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.pdp-qty-ctrl { display: flex; align-items: center; border: 1px solid var(--border); }
+.pdp-qty-btn { width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: var(--text); transition: background .2s ease, color .2s ease; line-height: 1; }
+.pdp-qty-btn:hover { background: var(--text); color: var(--white); }
+.pdp-qty-val { min-width: 44px; text-align: center; font-family: var(--sans); font-size: 0.85rem; height: 38px; display: flex; align-items: center; justify-content: center; border-left: 1px solid var(--border); border-right: 1px solid var(--border); }
+
+.pdp-add { width: 100%; padding: 1.15rem; background: var(--text); color: var(--white); font-family: var(--sans); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; transition: background .3s ease, color .3s ease; margin-bottom: 0.65rem; }
+.pdp-add:hover { background: var(--gold); color: var(--black); }
+.pdp-buy { width: 100%; padding: 1.15rem; background: transparent; color: var(--text); font-family: var(--sans); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; border: 1px solid var(--border); transition: border-color .3s ease; margin-bottom: 1.5rem; }
+.pdp-buy:hover { border-color: var(--text); }
+
+.pdp-trust { display: flex; border: 1px solid var(--border); margin-bottom: 1.5rem; }
+.pdp-trust-item { flex: 1; padding: 0.9rem 0.75rem; display: flex; flex-direction: column; align-items: center; gap: 0.3rem; border-right: 1px solid var(--border); text-align: center; }
+.pdp-trust-item:last-child { border-right: none; }
+.pdp-trust-icon { color: var(--gold); }
+.pdp-trust-label { font-family: var(--sans); font-size: 0.54rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text); }
+.pdp-trust-sub { font-family: var(--sans); font-size: 0.5rem; color: var(--muted); line-height: 1.4; }
+
+.pdp-certs { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.pdp-cert { padding: 0.25rem 0.65rem; border: 1px solid var(--border); font-family: var(--sans); font-size: 0.54rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+/* ── MARQUEE ── */
+.marquee { background: #0D0D0D; border-top: 1px solid rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.04); padding: 1.05rem 0; overflow: hidden; }
+.mq-track { display: flex; width: max-content; animation: mq-run 32s linear infinite; }
+.mq-track:hover { animation-play-state: paused; }
+.mq-item { display: flex; align-items: center; gap: 1.5rem; padding: 0 1.75rem; white-space: nowrap; font-family: var(--sans); font-size: 0.65rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.3); flex-shrink: 0; }
+.mq-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--gold); opacity: 0.55; flex-shrink: 0; }
+@keyframes mq-run { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ── FULL SPECS ── */
+.specs-section { background: var(--dark); padding: 7rem 3rem; }
+.specs-inner { max-width: 900px; margin: 0 auto; }
+.specs-head { margin-bottom: 3.5rem; }
+.specs-head h2 { font-family: var(--serif); font-size: clamp(3rem, 5vw, 5rem); font-weight: 300; font-style: italic; font-optical-sizing: auto; color: var(--white); line-height: 1.06; margin: 0.8rem 0 0.65rem; }
+.specs-head p { font-family: var(--sans); font-size: 0.85rem; font-weight: 300; color: rgba(255,255,255,0.32); }
+.specs-group { border-top: 1px solid rgba(255,255,255,0.08); }
+.specs-group-title { padding: 1.5rem 0 0.75rem; font-family: var(--sans); font-size: 0.56rem; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase; color: var(--gold); }
+.spec-row { display: flex; justify-content: space-between; align-items: baseline; padding: 0.82rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); gap: 1.5rem; }
+.spec-l { font-family: var(--sans); font-size: 0.72rem; font-weight: 400; color: rgba(255,255,255,0.35); flex-shrink: 0; }
+.spec-v { font-family: var(--sans); font-size: 0.8rem; font-weight: 400; color: rgba(255,255,255,0.72); text-align: right; }
+
+/* ── NEWSLETTER ── */
+.nl { background: var(--sand); padding: 5rem 3rem; text-align: center; }
+.nl h3 { font-family: var(--serif); font-size: 3.2rem; font-weight: 300; font-style: italic; font-optical-sizing: auto; color: var(--text); margin: 0.6rem 0 0.65rem; }
+.nl p { font-family: var(--sans); font-size: 0.9rem; font-weight: 300; color: var(--muted); margin-bottom: 2.25rem; }
+.nl-form { display: flex; max-width: 400px; margin: 0 auto; }
+.nl-in { flex: 1; padding: 0.9rem 1.15rem; background: var(--white); border: 1px solid var(--border); border-right: none; font-family: var(--sans); font-size: 0.72rem; color: var(--text); outline: none; transition: border-color .3s ease; }
+.nl-in:focus { border-color: var(--gold); }
+.nl-in::placeholder { color: var(--muted); }
+.nl-btn { padding: 0.9rem 1.6rem; background: var(--text); color: var(--white); font-family: var(--sans); font-size: 0.56rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; transition: background .3s ease; }
+.nl-btn:hover { background: var(--gold); }
+.nl-fine { font-family: var(--sans); font-size: 0.54rem; color: var(--muted); margin-top: 0.85rem; }
+
+/* ── FOOTER ── */
+.footer { background: var(--black); padding: 5.5rem 3rem 2.5rem; color: rgba(255,255,255,0.55); }
+.footer-inner { max-width: 1080px; margin: 0 auto; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3.5rem; margin-bottom: 4rem; }
+.f-brand-name { font-family: var(--serif); font-size: 1.75rem; font-weight: 300; font-style: italic; letter-spacing: 0.04em; color: var(--white); display: block; margin-bottom: 0.25rem; line-height: 1; }
+.f-brand-tag { font-family: var(--sans); font-size: 0.44rem; font-weight: 500; letter-spacing: 0.42em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 1.6rem; }
+.f-desc { font-family: var(--sans); font-size: 0.82rem; font-weight: 300; line-height: 1.82; color: rgba(255,255,255,0.55); max-width: 250px; margin-bottom: 1.85rem; }
+.f-social { display: flex; gap: 0.65rem; }
+.f-sl { width: 34px; height: 34px; border: 1px solid rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center; font-family: var(--sans); font-size: 0.6rem; font-weight: 600; color: rgba(255,255,255,0.55); transition: border-color .25s ease, color .25s ease; }
+.f-sl:hover { border-color: var(--gold); color: var(--gold); }
+.f-col-t { font-family: var(--sans); font-size: 0.58rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.78); margin-bottom: 1.5rem; }
+.f-links { display: flex; flex-direction: column; gap: 0.75rem; }
+.f-links a { font-family: var(--sans); font-size: 0.82rem; font-weight: 300; color: rgba(255,255,255,0.55); transition: color .25s ease; }
+.f-links a:hover { color: var(--white); }
+.f-btm { padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; }
+.f-copy { font-family: var(--sans); font-size: 0.65rem; color: rgba(255,255,255,0.45); }
+.f-legal { display: flex; gap: 1.5rem; }
+.f-legal a { font-family: var(--sans); font-size: 0.65rem; color: rgba(255,255,255,0.45); transition: color .25s ease; }
+.f-legal a:hover { color: rgba(255,255,255,0.8); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+    .pdp-hero { grid-template-columns: 1fr; gap: 3rem; padding: 2rem 2rem 5rem; }
+    .pdp-gallery { position: static; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+}
+@media (max-width: 768px) {
+    html { font-size: 15px; }
+    .nav-links { display: none; }
+    .breadcrumb { padding: 5rem 1.75rem 0; }
+    .pdp-hero { padding: 1.5rem 1.75rem 4rem; }
+    .pdp-gallery { flex-direction: column; }
+    .pdp-thumbs { flex-direction: row; flex-wrap: wrap; }
+    .pdp-thumb { width: 56px; height: 68px; }
+    .pdp-bullets { grid-template-columns: 1fr; }
+    .specs-section { padding: 5rem 1.75rem; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .sticky-bar { padding: 0.75rem 1.5rem; }
+    .sticky-bar-stars { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ NAV ══════════════ -->
+<nav class="nav">
+    <a href="index.html" class="nav-logo">
+        <span class="nav-logo-name">Lumea</span>
+        <span class="nav-logo-sub">Luxury Light Therapy</span>
+    </a>
+    <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="collection.html" class="nav-link active">Shop</a>
+        <a href="#" class="nav-link">Results</a>
+        <a href="#" class="nav-link">About</a>
+    </div>
+    <div class="nav-icons">
+        <a href="#" class="nav-icon" aria-label="Search">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </a>
+        <a href="#" class="nav-icon" aria-label="Account">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+        <a href="#" class="nav-icon" aria-label="Cart" style="position:relative;">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <span class="cart-pip">0</span>
+        </a>
+    </div>
+</nav>
+
+<!-- ══════════════ STICKY BAR ══════════════ -->
+<div class="sticky-bar" id="stickyBar">
+    <span class="sticky-bar-name"><em>Lumea G11</em></span>
+    <div class="sticky-bar-stars">
+        <div class="sticky-bar-stars-row">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <em>4.9 · 2,847 reviews</em>
+    </div>
+    <span class="sticky-bar-price">£249</span>
+    <button class="sticky-bar-btn">Add to Bag</button>
+</div>
+
+
+<!-- ══════════════ BREADCRUMB ══════════════ -->
+<div class="breadcrumb">
+    <a href="index.html" class="bc-item">Home</a>
+    <span class="bc-sep">/</span>
+    <a href="#" class="bc-item">Shop</a>
+    <span class="bc-sep">/</span>
+    <span class="bc-item current">G11 LED Mask</span>
+</div>
+
+
+<!-- ══════════════ PDP HERO ══════════════ -->
+<div class="pdp-hero" id="buybox">
+
+    <!-- Gallery -->
+    <div class="pdp-gallery">
+        <div class="pdp-thumbs">
+            <div class="pdp-thumb active" data-img="https://ca.jovs.com/cdn/shop/files/MaskViewTEST03_4f80e934-7f92-4483-804e-4b64effbe8e0.jpg">
+                <img src="https://ca.jovs.com/cdn/shop/files/MaskViewTEST03_4f80e934-7f92-4483-804e-4b64effbe8e0.jpg" alt="">
+            </div>
+            <div class="pdp-thumb" data-img="https://ca.jovs.com/cdn/shop/files/Group_2147203045_444c43fd-4f71-4313-a713-8918d163fd39.png">
+                <img src="https://ca.jovs.com/cdn/shop/files/Group_2147203045_444c43fd-4f71-4313-a713-8918d163fd39.png" alt="">
+            </div>
+            <div class="pdp-thumb" data-img="https://ca.jovs.com/cdn/shop/files/Second_pic_EMS_Mask_44e2c519-3616-4095-9e05-795ead8370d9.jpg">
+                <img src="https://ca.jovs.com/cdn/shop/files/Second_pic_EMS_Mask_44e2c519-3616-4095-9e05-795ead8370d9.jpg" alt="">
+            </div>
+            <div class="pdp-thumb" data-img="https://ca.jovs.com/cdn/shop/files/Mask_group2_b19deed9-4909-489a-aa9d-f442f4da8d31.webp">
+                <img src="https://ca.jovs.com/cdn/shop/files/Mask_group2_b19deed9-4909-489a-aa9d-f442f4da8d31.webp" alt="">
+            </div>
+            <div class="pdp-thumb" data-img="https://ca.jovs.com/cdn/shop/files/Second_pic_JP1_P.jpg">
+                <img src="https://ca.jovs.com/cdn/shop/files/Second_pic_JP1_P.jpg" alt="">
+            </div>
+        </div>
+        <div class="pdp-main-img">
+            <span class="pdp-main-img-badge">New · 2025</span>
+            <img id="pdpMainImgEl"
+                 src="https://ca.jovs.com/cdn/shop/files/MaskViewTEST03_4f80e934-7f92-4483-804e-4b64effbe8e0.jpg"
+                 alt="Lumea G11 4D LED Light Therapy Mask">
+        </div>
+    </div>
+
+    <!-- Buybox -->
+    <div class="pdp-buybox">
+        <p class="eyebrow">The G11 · Lumea</p>
+        <h1 class="pdp-name"><em>Lumea G11</em></h1>
+        <p class="pdp-subtitle">4D LED Light Therapy Mask · 147 Chips · 4 Wavelengths · 6 Smart Modes</p>
+
+        <div class="pdp-stars">
+            <div class="pdp-star-row">
+                <span class="pdp-star">★</span><span class="pdp-star">★</span><span class="pdp-star">★</span><span class="pdp-star">★</span><span class="pdp-star">★</span>
+            </div>
+            <span class="pdp-rating">4.9</span>
+            <a href="#" class="pdp-review-count">2,847 reviews</a>
+        </div>
+
+        <div class="pdp-price-row">
+            <span class="pdp-price-now">£249</span>
+            <span class="pdp-price-was">£299</span>
+            <span class="pdp-price-save">Save £50</span>
+        </div>
+        <p class="pdp-price-note">Free UK delivery · 30-day results guarantee · Flexible returns</p>
+
+        <div class="pdp-bullets">
+            <span class="pdp-bullet">147 LEDs — face &amp; neck</span>
+            <span class="pdp-bullet">4 clinical wavelengths</span>
+            <span class="pdp-bullet">6 intelligent modes</span>
+            <span class="pdp-bullet">10Hz pulse function</span>
+            <span class="pdp-bullet">5000mAh battery · Type-C</span>
+            <span class="pdp-bullet">Medical-grade silicone</span>
+        </div>
+
+        <div class="pdp-qty-row">
+            <span class="pdp-qty-label">Qty</span>
+            <div class="pdp-qty-ctrl">
+                <button class="pdp-qty-btn" id="qtyMinus">−</button>
+                <span class="pdp-qty-val" id="qtyVal">1</span>
+                <button class="pdp-qty-btn" id="qtyPlus">+</button>
+            </div>
+        </div>
+
+        <button class="pdp-add">Add to Bag</button>
+        <button class="pdp-buy">Buy It Now</button>
+
+        <div class="pdp-trust">
+            <div class="pdp-trust-item">
+                <span class="pdp-trust-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                <span class="pdp-trust-label">Free Delivery</span>
+                <span class="pdp-trust-sub">UK &amp; mainland</span>
+            </div>
+            <div class="pdp-trust-item">
+                <span class="pdp-trust-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+                <span class="pdp-trust-label">30-Day Guarantee</span>
+                <span class="pdp-trust-sub">Results or refund</span>
+            </div>
+            <div class="pdp-trust-item">
+                <span class="pdp-trust-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+                <span class="pdp-trust-label">Secure Checkout</span>
+                <span class="pdp-trust-sub">SSL encrypted</span>
+            </div>
+            <div class="pdp-trust-item">
+                <span class="pdp-trust-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+                <span class="pdp-trust-label">2-Year Warranty</span>
+                <span class="pdp-trust-sub">Full coverage</span>
+            </div>
+        </div>
+
+        <div class="pdp-certs">
+            <span class="pdp-cert">FDA 510(k)</span>
+            <span class="pdp-cert">CE Mark</span>
+            <span class="pdp-cert">UKCA</span>
+            <span class="pdp-cert">ISO 13485</span>
+            <span class="pdp-cert">IEC 60601</span>
+            <span class="pdp-cert">EU-MDR</span>
+        </div>
+    </div>
+</div>
+
+
+<!-- ══════════════ MARQUEE ══════════════ -->
+<div class="marquee">
+    <div class="mq-track">
+        <span class="mq-item">147 LED Chips<span class="mq-dot"></span></span>
+        <span class="mq-item">4 Clinical Wavelengths<span class="mq-dot"></span></span>
+        <span class="mq-item">6 Smart Modes<span class="mq-dot"></span></span>
+        <span class="mq-item">FDA 510(k) Cleared<span class="mq-dot"></span></span>
+        <span class="mq-item">10 Minutes Per Session<span class="mq-dot"></span></span>
+        <span class="mq-item">Free UK Delivery<span class="mq-dot"></span></span>
+        <span class="mq-item">Medical-Grade Silicone<span class="mq-dot"></span></span>
+        <span class="mq-item">30-Day Guarantee<span class="mq-dot"></span></span>
+        <span class="mq-item">10Hz Pulse Function<span class="mq-dot"></span></span>
+        <span class="mq-item">CE &amp; UKCA Certified<span class="mq-dot"></span></span>
+        <span class="mq-item">147 LED Chips<span class="mq-dot"></span></span>
+        <span class="mq-item">4 Clinical Wavelengths<span class="mq-dot"></span></span>
+        <span class="mq-item">6 Smart Modes<span class="mq-dot"></span></span>
+        <span class="mq-item">FDA 510(k) Cleared<span class="mq-dot"></span></span>
+        <span class="mq-item">10 Minutes Per Session<span class="mq-dot"></span></span>
+        <span class="mq-item">Free UK Delivery<span class="mq-dot"></span></span>
+        <span class="mq-item">Medical-Grade Silicone<span class="mq-dot"></span></span>
+        <span class="mq-item">30-Day Guarantee<span class="mq-dot"></span></span>
+        <span class="mq-item">10Hz Pulse Function<span class="mq-dot"></span></span>
+        <span class="mq-item">CE &amp; UKCA Certified<span class="mq-dot"></span></span>
+    </div>
+</div>
+
+
+<!-- ══════════════ FULL SPECS ══════════════ -->
+<section class="specs-section">
+    <div class="specs-inner">
+        <div class="specs-head" data-reveal>
+            <p class="eyebrow" style="color:rgba(176,138,34,0.7);">Full Specifications</p>
+            <h2>Every detail,<br><em>documented.</em></h2>
+            <p>Clinical-grade transparency. No marketing claims — only verified specifications.</p>
+        </div>
+
+        <div class="specs-group">
+            <p class="specs-group-title">LED Technology</p>
+            <div class="spec-row"><span class="spec-l">Total LED Count</span><span class="spec-v">147 chips (90 face + 57 neck)</span></div>
+            <div class="spec-row"><span class="spec-l">Wavelengths</span><span class="spec-v">415nm · 590nm · 633nm · 850/1072nm</span></div>
+            <div class="spec-row"><span class="spec-l">Irradiance</span><span class="spec-v">48.51 mW/cm²</span></div>
+            <div class="spec-row"><span class="spec-l">Pulse Frequency</span><span class="spec-v">10Hz (selectable)</span></div>
+            <div class="spec-row"><span class="spec-l">Brightness Levels</span><span class="spec-v">50% · 75% · 100%</span></div>
+        </div>
+
+        <div class="specs-group">
+            <p class="specs-group-title">Treatment Modes</p>
+            <div class="spec-row"><span class="spec-l">Number of Modes</span><span class="spec-v">6 preset intelligent programs</span></div>
+            <div class="spec-row"><span class="spec-l">Session Duration</span><span class="spec-v">10 minutes (auto-timer)</span></div>
+            <div class="spec-row"><span class="spec-l">Recommended Frequency</span><span class="spec-v">Daily (or 5× per week minimum)</span></div>
+            <div class="spec-row"><span class="spec-l">First Visible Results</span><span class="spec-v">4–6 weeks consistent use</span></div>
+        </div>
+
+        <div class="specs-group">
+            <p class="specs-group-title">Hardware &amp; Power</p>
+            <div class="spec-row"><span class="spec-l">Battery Capacity</span><span class="spec-v">5000mAh lithium-ion</span></div>
+            <div class="spec-row"><span class="spec-l">Charging</span><span class="spec-v">Type-C USB · 5V/2A</span></div>
+            <div class="spec-row"><span class="spec-l">Charge Time</span><span class="spec-v">Approx. 3 hours (full)</span></div>
+            <div class="spec-row"><span class="spec-l">Battery Life</span><span class="spec-v">20–30+ sessions per charge</span></div>
+            <div class="spec-row"><span class="spec-l">Display</span><span class="spec-v">LCD (mode · timer · intensity)</span></div>
+        </div>
+
+        <div class="specs-group">
+            <p class="specs-group-title">Materials &amp; Safety</p>
+            <div class="spec-row"><span class="spec-l">Mask Material</span><span class="spec-v">Medical-grade silicone</span></div>
+            <div class="spec-row"><span class="spec-l">Fit System</span><span class="spec-v">Adjustable head buckle · one size fits all</span></div>
+            <div class="spec-row"><span class="spec-l">Safety Class</span><span class="spec-v">IEC 60601 Medical Class II</span></div>
+            <div class="spec-row"><span class="spec-l">Certifications</span><span class="spec-v">FDA 510(k) · CE · UKCA · ISO 13485 · ISO 9001 · EU-MDR · RoHS · FCC</span></div>
+            <div class="spec-row"><span class="spec-l">Warranty</span><span class="spec-v">2 years (manufacturer defect)</span></div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ══════════════ NEWSLETTER ══════════════ -->
+<section class="nl">
+    <p class="eyebrow" data-reveal>Exclusive Access</p>
+    <h3 data-reveal data-reveal-delay="1">The Lumea Inner Circle</h3>
+    <p data-reveal data-reveal-delay="2">Early access to new launches, expert skincare guides, and exclusive member offers.</p>
+    <form class="nl-form" onsubmit="return false;" data-reveal data-reveal-delay="3">
+        <input class="nl-in" type="email" placeholder="Your email address">
+        <button class="nl-btn" type="submit">Join</button>
+    </form>
+    <p class="nl-fine" data-reveal data-reveal-delay="4">By subscribing you agree to our Privacy Policy. Unsubscribe at any time.</p>
+</section>
+
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-grid">
+            <div>
+                <span class="f-brand-name">Lumea</span>
+                <span class="f-brand-tag">Luxury Light Therapy</span>
+                <p class="f-desc">Professional-grade LED light therapy for the modern skincare ritual — engineered with clinical precision, designed with uncompromising luxury.</p>
+                <div class="f-social">
+                    <a href="#" class="f-sl">ig</a>
+                    <a href="#" class="f-sl">fb</a>
+                    <a href="#" class="f-sl">tt</a>
+                    <a href="#" class="f-sl">yt</a>
+                </div>
+            </div>
+            <div>
+                <p class="f-col-t">Shop</p>
+                <ul class="f-links">
+                    <li><a href="#">The G11 Mask</a></li>
+                    <li><a href="#">Bundles</a></li>
+                    <li><a href="#">Accessories</a></li>
+                    <li><a href="#">Gift Sets</a></li>
+                </ul>
+            </div>
+            <div>
+                <p class="f-col-t">Learn</p>
+                <ul class="f-links">
+                    <li><a href="#">The Science</a></li>
+                    <li><a href="#">How It Works</a></li>
+                    <li><a href="#">Clinical Research</a></li>
+                    <li><a href="#">Skincare Journal</a></li>
+                </ul>
+            </div>
+            <div>
+                <p class="f-col-t">Support</p>
+                <ul class="f-links">
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Shipping &amp; Returns</a></li>
+                    <li><a href="#">Warranty</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="f-btm">
+            <p class="f-copy">© 2026 Lumea Luxury Light Therapy. All rights reserved.</p>
+            <div class="f-legal">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script>
+/* ── Scroll reveal ── */
+const ro = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            const delay = e.target.dataset.revealDelay;
+            if (delay) e.target.style.transitionDelay = (parseInt(delay) * 0.12) + 's';
+            e.target.classList.add('is-visible');
+            ro.unobserve(e.target);
+        }
+    });
+}, { threshold: 0.1, rootMargin: '0px 0px -32px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+/* ── Sticky bar ── */
+const stickyBar = document.getElementById('stickyBar');
+const buybox = document.getElementById('buybox');
+new IntersectionObserver(([entry]) => {
+    stickyBar.classList.toggle('visible', !entry.isIntersecting);
+}, { threshold: 0 }).observe(buybox);
+
+/* ── Gallery thumbnails ── */
+const thumbs = document.querySelectorAll('.pdp-thumb');
+const mainImg = document.getElementById('pdpMainImgEl');
+thumbs.forEach(thumb => {
+    thumb.addEventListener('click', () => {
+        thumbs.forEach(t => t.classList.remove('active'));
+        thumb.classList.add('active');
+        mainImg.style.opacity = '0';
+        setTimeout(() => { mainImg.src = thumb.dataset.img; mainImg.style.opacity = '1'; }, 200);
+    });
+});
+
+/* ── Quantity selector ── */
+let qty = 1;
+document.getElementById('qtyMinus').addEventListener('click', () => { if (qty > 1) { qty--; document.getElementById('qtyVal').textContent = qty; } });
+document.getElementById('qtyPlus').addEventListener('click', () => { if (qty < 10) { qty++; document.getElementById('qtyVal').textContent = qty; } });
+</script>
+
+</body>
+</html>

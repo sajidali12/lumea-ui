@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Collection — LUMEA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,200;1,9..144,300;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+/* ═══ TOKENS ═══ */
+:root {
+    --black:  #080808;
+    --dark:   #111111;
+    --white:  #FFFFFF;
+    --cream:  #F5F2EC;
+    --sand:   #EDEAE3;
+    --gold:   #B08A22;
+    --gold-l: #D4AA44;
+    --text:   #1C1C1C;
+    --muted:  #80807A;
+    --border: #DEDAD2;
+    --serif: 'Fraunces', 'Palatino Linotype', Georgia, serif;
+    --sans:  'Plus Jakarta Sans', 'Helvetica Neue', system-ui, sans-serif;
+    --ease:  cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 17px; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; font-optical-sizing: auto; }
+body { font-family: var(--sans); background: var(--cream); color: var(--text); overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+button { border: none; background: none; cursor: pointer; font-family: inherit; }
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+[data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+[data-reveal].is-visible { opacity: 1; transform: none; }
+[data-reveal-delay="1"].is-visible { transition-delay: 0.1s; }
+[data-reveal-delay="2"].is-visible { transition-delay: 0.22s; }
+[data-reveal-delay="3"].is-visible { transition-delay: 0.36s; }
+
+/* ═══ NAV ═══ */
+.nav {
+    position: fixed; inset: 0 0 auto; z-index: 300;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.9rem 2.5rem;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.04);
+}
+.nav-logo { display: flex; flex-direction: column; line-height: 1; }
+.nav-logo-name { font-family: var(--serif); font-size: 1.75rem; font-weight: 300; font-style: italic; letter-spacing: 0.04em; color: var(--text); line-height: 1; }
+.nav-logo-sub { font-family: var(--sans); font-size: 0.44rem; font-weight: 500; letter-spacing: 0.42em; text-transform: uppercase; color: var(--gold-l); margin-top: 0.2rem; }
+.nav-links { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 2.5rem; }
+.nav-link { font-family: var(--sans); font-size: 0.65rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); transition: color .3s ease; }
+.nav-link:hover { color: var(--gold-l); }
+.nav-link.active { color: var(--text); }
+.nav-icons { display: flex; gap: 1.25rem; align-items: center; }
+.nav-icon { color: var(--text); display: flex; align-items: center; transition: color .3s ease; position: relative; }
+.nav-icon:hover { color: var(--gold); }
+.cart-pip { position: absolute; top: -6px; right: -8px; width: 14px; height: 14px; border-radius: 50%; background: var(--gold); color: var(--black); font-size: 0.42rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+
+/* ═══ COLLECTION HERO ═══ */
+.col-hero {
+    background: var(--dark);
+    padding: 9rem 3rem 6rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: end;
+    position: relative;
+    overflow: hidden;
+}
+.col-hero::before {
+    content: '';
+    position: absolute; top: 50%; left: 30%;
+    transform: translate(-50%, -50%);
+    width: 50vw; height: 50vh;
+    background: radial-gradient(ellipse, rgba(176,138,34,0.05), transparent 65%);
+    pointer-events: none;
+}
+.col-hero-left {}
+.col-eyebrow { font-family: var(--sans); font-size: 0.65rem; font-weight: 600; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(176,138,34,0.75); margin-bottom: 1.5rem; }
+.col-hero-h1 {
+    font-family: var(--serif);
+    font-size: clamp(3.5rem, 6vw, 7rem);
+    font-weight: 300; font-style: italic;
+    font-optical-sizing: auto;
+    color: var(--white); line-height: 1.04;
+    letter-spacing: -0.01em;
+}
+.col-hero-h1 em { color: var(--gold-l); }
+.col-hero-right { padding-bottom: 0.5rem; }
+.col-hero-desc {
+    font-family: var(--sans); font-size: 0.95rem;
+    font-weight: 300; line-height: 1.9;
+    color: rgba(255,255,255,0.38);
+    max-width: 380px; margin-bottom: 2rem;
+}
+.col-hero-stats { display: flex; gap: 2.5rem; border-top: 1px solid rgba(255,255,255,0.07); padding-top: 2rem; }
+.col-stat-n { font-family: var(--serif); font-size: 2.2rem; font-weight: 300; font-style: italic; color: var(--white); line-height: 1; }
+.col-stat-l { font-family: var(--sans); font-size: 0.58rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.28); margin-top: 0.3rem; }
+
+/* ═══ FILTER BAR ═══ */
+.filter-bar {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 2rem;
+}
+.filter-tabs { display: flex; }
+.filter-tab {
+    padding: 1.1rem 0;
+    margin-right: 2.25rem;
+    font-family: var(--sans); font-size: 0.62rem;
+    font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); cursor: pointer;
+    border-bottom: 1.5px solid transparent;
+    transition: color .25s ease, border-color .25s ease;
+}
+.filter-tab:hover { color: var(--text); }
+.filter-tab.active { color: var(--text); border-color: var(--text); }
+.filter-sort {
+    font-family: var(--sans); font-size: 0.62rem;
+    font-weight: 500; letter-spacing: 0.1em;
+    color: var(--muted); display: flex; align-items: center; gap: 0.5rem;
+    flex-shrink: 0;
+}
+.filter-sort select {
+    font-family: var(--sans); font-size: 0.62rem; font-weight: 500;
+    color: var(--text); background: transparent; border: none; outline: none;
+    cursor: pointer; letter-spacing: 0.1em;
+    appearance: none; padding-right: 1rem;
+}
+
+/* ═══ COLLECTION GRID ═══ */
+.col-grid-section { padding: 4rem 3rem 7rem; }
+.col-count {
+    font-family: var(--sans); font-size: 0.6rem;
+    font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 2.5rem;
+}
+.col-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+
+/* Product card */
+.prod-card { display: flex; flex-direction: column; }
+.prod-card-img {
+    position: relative; overflow: hidden;
+    aspect-ratio: 3/4; background: var(--sand);
+    margin-bottom: 1.25rem;
+}
+.prod-card-img img { transition: transform .8s var(--ease), opacity .4s ease; opacity: 0.92; }
+.prod-card:hover .prod-card-img img { transform: scale(1.05); opacity: 1; }
+
+.prod-badge {
+    position: absolute; top: 1.1rem; left: 1.1rem; z-index: 2;
+    padding: 0.24rem 0.65rem;
+    font-family: var(--sans); font-size: 0.5rem;
+    font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+}
+.prod-badge.gold { background: var(--gold); color: var(--black); }
+.prod-badge.dark { background: var(--dark); color: rgba(255,255,255,0.8); }
+.prod-badge.outline { background: transparent; border: 1px solid rgba(255,255,255,0.5); color: rgba(255,255,255,0.75); }
+
+/* Quick-add overlay */
+.prod-card-overlay {
+    position: absolute; inset: 0; z-index: 3;
+    display: flex; align-items: flex-end; padding: 1.25rem;
+    background: linear-gradient(to top, rgba(8,8,8,0.45) 0%, transparent 50%);
+    opacity: 0; transition: opacity .35s ease;
+}
+.prod-card:hover .prod-card-overlay { opacity: 1; }
+.prod-quick-add {
+    width: 100%; padding: 0.85rem;
+    background: var(--white); color: var(--black);
+    font-family: var(--sans); font-size: 0.62rem;
+    font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+    transition: background .25s ease;
+}
+.prod-quick-add:hover { background: var(--gold); }
+
+/* Card info */
+.prod-card-info {}
+.prod-card-eyebrow {
+    font-family: var(--sans); font-size: 0.55rem;
+    font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.3rem;
+}
+.prod-card-name {
+    font-family: var(--serif); font-size: 1.55rem;
+    font-weight: 300; font-style: italic;
+    color: var(--text); line-height: 1.2; margin-bottom: 0.25rem;
+    transition: color .25s ease;
+}
+a.prod-card-name:hover { color: var(--gold); }
+.prod-card-sub {
+    font-family: var(--sans); font-size: 0.72rem;
+    font-weight: 300; color: var(--muted);
+    line-height: 1.55; margin-bottom: 0.85rem;
+}
+.prod-card-footer { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.prod-card-price { font-family: var(--serif); font-size: 1.5rem; font-weight: 300; font-style: italic; color: var(--text); line-height: 1; }
+.prod-card-price-was { font-family: var(--sans); font-size: 0.72rem; font-weight: 300; color: var(--muted); text-decoration: line-through; margin-left: 0.4rem; }
+.prod-card-link {
+    font-family: var(--sans); font-size: 0.6rem;
+    font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text); display: flex; align-items: center; gap: 0.35rem;
+    border-bottom: 1px solid var(--border); padding-bottom: 1px;
+    transition: color .25s ease, border-color .25s ease;
+    white-space: nowrap;
+}
+.prod-card-link:hover { color: var(--gold); border-color: var(--gold); }
+
+/* ═══ NEWSLETTER ═══ */
+.nl { background: var(--sand); padding: 5rem 3rem; text-align: center; }
+.eyebrow { font-family: var(--sans); font-size: 0.65rem; font-weight: 600; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold); }
+.nl h3 { font-family: var(--serif); font-size: 3.2rem; font-weight: 300; font-style: italic; font-optical-sizing: auto; color: var(--text); margin: 0.6rem 0 0.65rem; }
+.nl p { font-family: var(--sans); font-size: 0.9rem; font-weight: 300; color: var(--muted); margin-bottom: 2.25rem; }
+.nl-form { display: flex; max-width: 400px; margin: 0 auto; }
+.nl-in { flex: 1; padding: 0.9rem 1.15rem; background: var(--white); border: 1px solid var(--border); border-right: none; font-family: var(--sans); font-size: 0.72rem; color: var(--text); outline: none; transition: border-color .3s ease; }
+.nl-in:focus { border-color: var(--gold); }
+.nl-in::placeholder { color: var(--muted); }
+.nl-btn { padding: 0.9rem 1.6rem; background: var(--text); color: var(--white); font-family: var(--sans); font-size: 0.56rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; transition: background .3s ease; }
+.nl-btn:hover { background: var(--gold); }
+.nl-fine { font-family: var(--sans); font-size: 0.54rem; color: var(--muted); margin-top: 0.85rem; }
+
+/* ═══ FOOTER ═══ */
+.footer { background: var(--black); padding: 5.5rem 3rem 2.5rem; color: rgba(255,255,255,0.55); }
+.footer-inner { max-width: 1080px; margin: 0 auto; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3.5rem; margin-bottom: 4rem; }
+.f-brand-name { font-family: var(--serif); font-size: 1.75rem; font-weight: 300; font-style: italic; letter-spacing: 0.04em; color: var(--white); display: block; margin-bottom: 0.25rem; line-height: 1; }
+.f-brand-tag { font-family: var(--sans); font-size: 0.44rem; font-weight: 500; letter-spacing: 0.42em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 1.6rem; }
+.f-desc { font-family: var(--sans); font-size: 0.82rem; font-weight: 300; line-height: 1.82; color: rgba(255,255,255,0.55); max-width: 250px; margin-bottom: 1.85rem; }
+.f-social { display: flex; gap: 0.65rem; }
+.f-sl { width: 34px; height: 34px; border: 1px solid rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center; font-family: var(--sans); font-size: 0.6rem; font-weight: 600; color: rgba(255,255,255,0.55); transition: border-color .25s ease, color .25s ease; }
+.f-sl:hover { border-color: var(--gold); color: var(--gold); }
+.f-col-t { font-family: var(--sans); font-size: 0.58rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.78); margin-bottom: 1.5rem; }
+.f-links { display: flex; flex-direction: column; gap: 0.75rem; }
+.f-links a { font-family: var(--sans); font-size: 0.82rem; font-weight: 300; color: rgba(255,255,255,0.55); transition: color .25s ease; }
+.f-links a:hover { color: var(--white); }
+.f-btm { padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; }
+.f-copy { font-family: var(--sans); font-size: 0.65rem; color: rgba(255,255,255,0.45); }
+.f-legal { display: flex; gap: 1.5rem; }
+.f-legal a { font-family: var(--sans); font-size: 0.65rem; color: rgba(255,255,255,0.45); transition: color .25s ease; }
+.f-legal a:hover { color: rgba(255,255,255,0.8); }
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 1024px) {
+    .col-hero { grid-template-columns: 1fr; gap: 2.5rem; padding: 8rem 2.5rem 5rem; }
+    .col-hero-desc { max-width: 100%; }
+    .col-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+}
+@media (max-width: 768px) {
+    html { font-size: 15px; }
+    .nav-links { display: none; }
+    .col-hero { padding: 7rem 1.75rem 4rem; }
+    .col-hero-h1 { font-size: clamp(3rem, 9vw, 5rem); }
+    .col-grid-section { padding: 3rem 1.75rem 5rem; }
+    .col-grid { grid-template-columns: 1fr; max-width: 400px; }
+    .filter-bar { padding: 0 1.75rem; overflow-x: auto; }
+    .footer-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ NAV ══════════════ -->
+<nav class="nav">
+    <a href="index.html" class="nav-logo">
+        <span class="nav-logo-name">Lumea</span>
+        <span class="nav-logo-sub">Luxury Light Therapy</span>
+    </a>
+    <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="collection.html" class="nav-link active">Shop</a>
+        <a href="index.html#results" class="nav-link">Results</a>
+        <a href="#" class="nav-link">About</a>
+    </div>
+    <div class="nav-icons">
+        <a href="#" class="nav-icon" aria-label="Search">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </a>
+        <a href="#" class="nav-icon" aria-label="Account">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+        <a href="#" class="nav-icon" aria-label="Cart" style="position:relative;">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <span class="cart-pip">0</span>
+        </a>
+    </div>
+</nav>
+
+
+<!-- ══════════════ COLLECTION HERO ══════════════ -->
+<section class="col-hero">
+    <div class="col-hero-left">
+        <p class="col-eyebrow" data-reveal>The Lumea Edit</p>
+        <h1 class="col-hero-h1" data-reveal data-reveal-delay="1">
+            Light therapy,<br>
+            <em>refined.</em>
+        </h1>
+    </div>
+    <div class="col-hero-right" data-reveal data-reveal-delay="2">
+        <p class="col-hero-desc">Every product in the Lumea range is engineered to clinical specification — then designed to feel like nothing else in your bathroom. Minimal. Considered. Effective.</p>
+        <div class="col-hero-stats">
+            <div>
+                <div class="col-stat-n">3</div>
+                <div class="col-stat-l">Products</div>
+            </div>
+            <div>
+                <div class="col-stat-n">147</div>
+                <div class="col-stat-l">LED Chips</div>
+            </div>
+            <div>
+                <div class="col-stat-n">4wk</div>
+                <div class="col-stat-l">First Results</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ══════════════ FILTER BAR ══════════════ -->
+<div class="filter-bar">
+    <div class="filter-tabs">
+        <span class="filter-tab active">All</span>
+        <span class="filter-tab">Masks</span>
+        <span class="filter-tab">Serums</span>
+        <span class="filter-tab">Bundles</span>
+    </div>
+    <div class="filter-sort">
+        <span>Sort by</span>
+        <select>
+            <option>Featured</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+            <option>Best Sellers</option>
+        </select>
+    </div>
+</div>
+
+
+<!-- ══════════════ PRODUCT GRID ══════════════ -->
+<section class="col-grid-section">
+    <p class="col-count">3 products</p>
+    <div class="col-grid">
+
+        <!-- Product 1: G11 LED Mask -->
+        <div class="prod-card" data-reveal>
+            <a href="product.html" class="prod-card-img">
+                <span class="prod-badge gold">Bestseller</span>
+                <img src="https://ca.jovs.com/cdn/shop/files/MaskViewTEST03_4f80e934-7f92-4483-804e-4b64effbe8e0.jpg"
+                     alt="Lumea G11 4D LED Mask" loading="lazy">
+                <div class="prod-card-overlay">
+                    <button class="prod-quick-add">Quick Add to Bag</button>
+                </div>
+            </a>
+            <div class="prod-card-info">
+                <p class="prod-card-eyebrow">LED Therapy Mask</p>
+                <a href="product.html" class="prod-card-name">Lumea G11</a>
+                <p class="prod-card-sub">4D curved · 147 LEDs · 4 wavelengths · 6 modes · 5000mAh</p>
+                <div class="prod-card-footer">
+                    <div>
+                        <span class="prod-card-price">£249</span>
+                        <span class="prod-card-price-was">£299</span>
+                    </div>
+                    <a href="product.html" class="prod-card-link">
+                        View Product
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 2: Complete Ritual Kit -->
+        <div class="prod-card" data-reveal data-reveal-delay="1">
+            <div class="prod-card-img">
+                <span class="prod-badge dark">Bundle · Save £50</span>
+                <img src="https://ca.jovs.com/cdn/shop/files/Group_2147203045_444c43fd-4f71-4313-a713-8918d163fd39.png"
+                     alt="Lumea Complete Ritual Kit" loading="lazy"
+                     style="object-fit:contain; padding: 2rem; background:#1A1A1A;">
+                <div class="prod-card-overlay">
+                    <button class="prod-quick-add">Quick Add to Bag</button>
+                </div>
+            </div>
+            <div class="prod-card-info">
+                <p class="prod-card-eyebrow">Complete Bundle</p>
+                <p class="prod-card-name">Ritual Kit</p>
+                <p class="prod-card-sub">G11 Mask + Cellular Renewal Serum · luxury gift packaging</p>
+                <div class="prod-card-footer">
+                    <div>
+                        <span class="prod-card-price">£299</span>
+                        <span class="prod-card-price-was">£349</span>
+                    </div>
+                    <a href="product.html" class="prod-card-link">
+                        View Product
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 3: Cellular Renewal Serum -->
+        <div class="prod-card" data-reveal data-reveal-delay="2">
+            <div class="prod-card-img">
+                <span class="prod-badge outline">New Formula</span>
+                <img src="https://ca.jovs.com/cdn/shop/files/Second_pic_EMS_Mask_44e2c519-3616-4095-9e05-795ead8370d9.jpg"
+                     alt="Lumea Cellular Renewal Serum" loading="lazy">
+                <div class="prod-card-overlay">
+                    <button class="prod-quick-add">Quick Add to Bag</button>
+                </div>
+            </div>
+            <div class="prod-card-info">
+                <p class="prod-card-eyebrow">Amplifying Serum</p>
+                <p class="prod-card-name">Cellular Renewal Serum</p>
+                <p class="prod-card-sub">Formulated to maximise LED light absorption · 30ml · all skin types</p>
+                <div class="prod-card-footer">
+                    <span class="prod-card-price">£49</span>
+                    <a href="product.html" class="prod-card-link">
+                        View Product
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ══════════════ NEWSLETTER ══════════════ -->
+<section class="nl">
+    <p class="eyebrow" data-reveal>Exclusive Access</p>
+    <h3 data-reveal data-reveal-delay="1">The Lumea Inner Circle</h3>
+    <p data-reveal data-reveal-delay="2">Early access to new launches, expert skincare guides, and exclusive member offers.</p>
+    <form class="nl-form" onsubmit="return false;" data-reveal data-reveal-delay="3">
+        <input class="nl-in" type="email" placeholder="Your email address">
+        <button class="nl-btn" type="submit">Join</button>
+    </form>
+    <p class="nl-fine" data-reveal data-reveal-delay="4">By subscribing you agree to our Privacy Policy. Unsubscribe at any time.</p>
+</section>
+
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-grid">
+            <div>
+                <span class="f-brand-name">Lumea</span>
+                <span class="f-brand-tag">Luxury Light Therapy</span>
+                <p class="f-desc">Professional-grade LED light therapy for the modern skincare ritual — engineered with clinical precision, designed with uncompromising luxury.</p>
+                <div class="f-social">
+                    <a href="#" class="f-sl">ig</a>
+                    <a href="#" class="f-sl">fb</a>
+                    <a href="#" class="f-sl">tt</a>
+                    <a href="#" class="f-sl">yt</a>
+                </div>
+            </div>
+            <div>
+                <p class="f-col-t">Shop</p>
+                <ul class="f-links">
+                    <li><a href="product.html">The G11 Mask</a></li>
+                    <li><a href="collection.html">Bundles</a></li>
+                    <li><a href="collection.html">Accessories</a></li>
+                    <li><a href="#">Gift Sets</a></li>
+                </ul>
+            </div>
+            <div>
+                <p class="f-col-t">Learn</p>
+                <ul class="f-links">
+                    <li><a href="index.html#technology">The Science</a></li>
+                    <li><a href="#">How It Works</a></li>
+                    <li><a href="#">Clinical Research</a></li>
+                    <li><a href="#">Skincare Journal</a></li>
+                </ul>
+            </div>
+            <div>
+                <p class="f-col-t">Support</p>
+                <ul class="f-links">
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Shipping &amp; Returns</a></li>
+                    <li><a href="#">Warranty</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="f-btm">
+            <p class="f-copy">© 2026 Lumea Luxury Light Therapy. All rights reserved.</p>
+            <div class="f-legal">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script>
+/* ── Scroll reveal ── */
+const ro = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            const delay = e.target.dataset.revealDelay;
+            if (delay) e.target.style.transitionDelay = (parseInt(delay) * 0.12) + 's';
+            e.target.classList.add('is-visible');
+            ro.unobserve(e.target);
+        }
+    });
+}, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+
+/* ── Filter tabs (visual only) ── */
+document.querySelectorAll('.filter-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+    });
+});
+</script>
+
+</body>
+</html>
