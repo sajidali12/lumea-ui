@@ -5,30 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LUMEA — Luxury Light Therapy</title>
 
-    <!-- Fraunces (optical variable serif — editorial luxury) + Plus Jakarta Sans (premium UI sans) -->
+    <!-- Cormorant Garamond (primary serif) + Montserrat (secondary sans) — per moodboard -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,200;1,9..144,300;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
 
 <style>
 /* ═══════════════════════════════════════
    DESIGN TOKENS
 ═══════════════════════════════════════ */
 :root {
-    --black:  #080808;
-    --dark:   #111111;
-    --dark2:  #1A1A1A;
+    --black:  #25211E;
+    --dark:   #25211E;
+    --dark2:  #2E2925;
     --white:  #FFFFFF;
-    --cream:  #F5F2EC;
-    --sand:   #EDEAE3;
-    --gold:   #B08A22;
-    --gold-l: #D4AA44;
-    --text:   #1C1C1C;
-    --muted:  #80807A;
-    --border: #DEDAD2;
+    --cream:  #F1F2F2;
+    --sand:   #EDE8DC;
+    --gold:   #CB9C2C;
+    --gold-l: #CDA032;
+    --gold-bright: #FCEA66;
+    --text:   #25211E;
+    --muted:  #8C8070;
+    --border: #DDD7CC;
 
-    --serif: 'Fraunces', 'Palatino Linotype', Georgia, serif;
-    --sans:  'Plus Jakarta Sans', 'Helvetica Neue', system-ui, sans-serif;
+    --serif: 'Cormorant Garamond', 'Palatino Linotype', Georgia, serif;
+    --sans:  'Montserrat', 'Helvetica Neue', system-ui, sans-serif;
     --ease:  cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -36,7 +37,7 @@
    BASE
 ═══════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 17px; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-optical-sizing: auto; }
+html { font-size: 16px; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 body { font-family: var(--sans); background: var(--cream); color: var(--text); overflow-x: hidden; }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
@@ -80,22 +81,22 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
 .nav-logo { display: flex; flex-direction: column; line-height: 1; }
 .nav-logo-name {
     font-family: var(--serif);
-    font-size: 1.75rem;
-    font-weight: 300;
+    font-size: 1.9rem;
+    font-weight: 400;
     font-style: italic;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.02em;
     color: var(--white);
     transition: color .4s ease;
     line-height: 1;
 }
 .nav-logo-sub {
     font-family: var(--sans);
-    font-size: 0.44rem;
+    font-size: 0.42rem;
     font-weight: 500;
-    letter-spacing: 0.42em;
+    letter-spacing: 0.45em;
     text-transform: uppercase;
     color: var(--gold-l);
-    margin-top: 0.2rem;
+    margin-top: 0.25rem;
 }
 .nav-links {
     position: absolute; left: 50%; transform: translateX(-50%);
@@ -103,9 +104,9 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
 }
 .nav-link {
     font-family: var(--sans);
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     font-weight: 500;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: rgba(255,255,255,0.55);
     transition: color .3s ease;
@@ -148,8 +149,8 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
 }
 .hero-eyebrow {
     font-family: var(--sans);
-    font-size: 0.68rem; font-weight: 500;
-    letter-spacing: 0.32em; text-transform: uppercase;
+    font-size: 0.6rem; font-weight: 500;
+    letter-spacing: 0.38em; text-transform: uppercase;
     color: var(--gold-l);
     display: flex; align-items: center; gap: 0.85rem;
     margin-bottom: 2.25rem;
@@ -160,53 +161,53 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
 }
 .hero-h1 {
     font-family: var(--serif);
-    font-size: clamp(3.6rem, 5.6vw, 7rem);
-    font-weight: 300;
+    font-size: clamp(3.2rem, 5vw, 6.2rem);
+    font-weight: 400;
     font-style: italic;
-    font-optical-sizing: auto;
-    line-height: 1.04;
-    letter-spacing: -0.01em;
+    line-height: 1.08;
+    letter-spacing: 0.01em;
     color: var(--white);
     margin-bottom: 1.75rem;
 }
 .hero-h1 strong {
     font-style: normal;
-    font-weight: 200;
+    font-weight: 300;
     display: block;
-    color: rgba(255,255,255,0.72);
-    letter-spacing: 0.04em;
+    color: rgba(255,255,255,0.75);
+    letter-spacing: 0.06em;
 }
 .hero-h1 em {
-    color: var(--gold-l);
+    color: var(--gold-bright);
     font-style: italic;
     font-weight: 400;
 }
 .hero-sub {
     font-family: var(--sans);
-    font-size: 1rem; font-weight: 300; line-height: 1.85;
-    color: rgba(255,255,255,0.42);
+    font-size: 0.78rem; font-weight: 300; line-height: 1.9;
+    color: rgba(255,255,255,0.45);
     max-width: 340px; margin-bottom: 2.25rem;
+    letter-spacing: 0.04em;
 }
 .hero-btns { display: flex; gap: 1.1rem; align-items: center; flex-wrap: wrap; }
 .btn-fill {
     display: inline-flex; align-items: center; gap: 0.5rem;
-    padding: 1.05rem 2.4rem;
-    background: var(--white); color: var(--black);
-    font-family: var(--sans); font-size: 0.68rem;
-    font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+    padding: 1rem 2.4rem;
+    background: var(--gold); color: var(--white);
+    font-family: var(--sans); font-size: 0.6rem;
+    font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
     transition: background .3s ease, color .3s ease, box-shadow .3s ease;
 }
-.btn-fill:hover { background: var(--gold); color: var(--black); box-shadow: 0 8px 28px rgba(176,138,34,0.28); }
+.btn-fill:hover { background: var(--gold-bright); color: var(--black); box-shadow: 0 8px 28px rgba(203,156,44,0.32); }
 .btn-ghost-light {
     display: inline-flex; align-items: center; gap: 0.4rem;
-    font-family: var(--sans); font-size: 0.68rem;
-    font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase;
+    font-family: var(--sans); font-size: 0.6rem;
+    font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase;
     color: rgba(255,255,255,0.38);
     border-bottom: 1px solid rgba(255,255,255,0.14);
     padding-bottom: 3px;
     transition: color .3s ease, border-color .3s ease;
 }
-.btn-ghost-light:hover { color: var(--gold-l); border-color: var(--gold); }
+.btn-ghost-light:hover { color: var(--gold-bright); border-color: var(--gold-l); }
 
 /* Right: product image */
 .hero-img {
@@ -249,15 +250,15 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
 .hero-stat:last-child { border-right: none; }
 .hero-stat-n {
     font-family: var(--serif);
-    font-size: 2.1rem; font-weight: 300; font-style: italic;
+    font-size: 2.4rem; font-weight: 400; font-style: italic;
     color: var(--white); line-height: 1;
 }
-.hero-stat-n sup { font-size: 0.75rem; opacity: 0.45; }
+.hero-stat-n sup { font-size: 0.8rem; opacity: 0.45; }
 .hero-stat-l {
     font-family: var(--sans);
-    font-size: 0.58rem; font-weight: 500;
-    letter-spacing: 0.15em; text-transform: uppercase;
-    color: rgba(255,255,255,0.28); margin-top: 0.35rem;
+    font-size: 0.5rem; font-weight: 500;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(255,255,255,0.28); margin-top: 0.4rem;
 }
 
 /* ═══════════════════════════════════════
@@ -277,8 +278,8 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
 .mq-item {
     display: flex; align-items: center; gap: 1.5rem;
     padding: 0 1.75rem; white-space: nowrap;
-    font-family: var(--sans); font-size: 0.65rem;
-    font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
+    font-family: var(--sans); font-size: 0.55rem;
+    font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase;
     color: rgba(255,255,255,0.3);
     flex-shrink: 0;
 }
@@ -327,23 +328,22 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
     display: flex; flex-direction: column; justify-content: center;
 }
 .eyebrow {
-    font-family: var(--sans); font-size: 0.65rem;
-    font-weight: 600; letter-spacing: 0.32em; text-transform: uppercase;
+    font-family: var(--sans); font-size: 0.58rem;
+    font-weight: 600; letter-spacing: 0.38em; text-transform: uppercase;
     color: var(--gold);
 }
 .story-right h2 {
     font-family: var(--serif);
-    font-size: clamp(3rem, 5vw, 5.5rem);
-    font-weight: 300; font-style: italic;
-    font-optical-sizing: auto;
-    line-height: 1.08; letter-spacing: -0.01em;
+    font-size: clamp(2.8rem, 4.5vw, 5rem);
+    font-weight: 400; font-style: italic;
+    line-height: 1.1; letter-spacing: 0.01em;
     color: var(--text); margin: 1.25rem 0 1.85rem;
 }
 .story-right h2 strong { font-style: normal; font-weight: 300; color: var(--text); }
 .story-right p {
-    font-family: var(--sans); font-size: 0.97rem;
-    font-weight: 300; line-height: 1.92;
-    color: #5C5C5C; margin-bottom: 1.5rem;
+    font-family: var(--sans); font-size: 0.82rem;
+    font-weight: 300; line-height: 1.95;
+    color: #5A5348; margin-bottom: 1.5rem; letter-spacing: 0.02em;
 }
 .story-kpis {
     display: flex; gap: 2.75rem;
@@ -351,13 +351,13 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
     border-top: 1px solid var(--border);
 }
 .kpi-v {
-    font-family: var(--serif); font-size: 3.2rem;
-    font-weight: 300; font-style: italic;
-    color: var(--text); line-height: 1;
+    font-family: var(--serif); font-size: 3.4rem;
+    font-weight: 400; font-style: italic;
+    color: var(--gold); line-height: 1;
 }
 .kpi-l {
-    font-family: var(--sans); font-size: 0.6rem;
-    font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+    font-family: var(--sans); font-size: 0.52rem;
+    font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
     color: var(--muted); margin-top: 0.45rem;
 }
 
@@ -389,13 +389,13 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
 .wl-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
 .wl-tab.active .wl-dot { box-shadow: 0 0 14px 4px currentColor; }
 .wl-nm {
-    font-family: var(--serif); font-size: 2.4rem;
+    font-family: var(--serif); font-size: 2.6rem;
     font-weight: 400; font-style: italic;
     color: var(--white); line-height: 1;
 }
 .wl-name {
-    font-family: var(--sans); font-size: 0.62rem;
-    font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+    font-family: var(--sans); font-size: 0.55rem;
+    font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
     color: rgba(255,255,255,0.3); transition: color .3s ease;
 }
 .wl-tab.active .wl-name { color: rgba(255,255,255,0.78); }
@@ -413,23 +413,22 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
 }
 .wl-title {
     font-family: var(--serif);
-    font-size: clamp(2.6rem,4.2vw,4.8rem);
-    font-weight: 300; font-style: italic;
-    font-optical-sizing: auto;
+    font-size: clamp(2.4rem,3.8vw,4.4rem);
+    font-weight: 400; font-style: italic;
     color: var(--white); line-height: 1.1;
 }
 .wl-body {
-    font-family: var(--sans); font-size: 0.95rem;
+    font-family: var(--sans); font-size: 0.8rem;
     font-weight: 300; line-height: 1.9;
-    color: rgba(255,255,255,0.42); max-width: 380px;
+    color: rgba(255,255,255,0.45); max-width: 380px; letter-spacing: 0.02em;
 }
 .wl-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; }
 .wl-tag {
     padding: 0.35rem 0.9rem;
-    border: 1px solid rgba(255,255,255,0.13);
-    font-family: var(--sans); font-size: 0.6rem;
-    font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
-    color: rgba(255,255,255,0.42);
+    border: 1px solid rgba(203,156,44,0.25);
+    font-family: var(--sans); font-size: 0.52rem;
+    font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(203,156,44,0.65);
 }
 .wl-panel-img {
     position: relative; overflow: hidden;
@@ -464,10 +463,9 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
 }
 .modes-head h2 {
     font-family: var(--serif);
-    font-size: clamp(3rem, 5.2vw, 5.4rem);
-    font-weight: 300; font-style: italic;
-    font-optical-sizing: auto;
-    color: var(--text); line-height: 1.06; margin-top: 0.65rem;
+    font-size: clamp(2.8rem, 4.8vw, 5rem);
+    font-weight: 400; font-style: italic;
+    color: var(--text); line-height: 1.08; margin-top: 0.65rem;
 }
 .modes-hint {
     font-family: var(--sans); font-size: 0.68rem;
@@ -499,18 +497,18 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
 .ml-y { background: #E8B840; } .ml-r { background: #E84848; }
 .ml-n { background: #C040E8; } .ml-b { background: #4870E8; }
 .mode-name {
-    font-family: var(--serif); font-size: 1.85rem;
-    font-weight: 300; font-style: italic;
+    font-family: var(--serif); font-size: 2rem;
+    font-weight: 400; font-style: italic;
     color: var(--text); line-height: 1.2; margin-bottom: 0.4rem;
 }
 .mode-wl {
-    font-family: var(--sans); font-size: 0.62rem;
-    font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--muted); margin-bottom: 1.2rem;
+    font-family: var(--sans); font-size: 0.54rem;
+    font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.2rem;
 }
 .mode-desc {
-    font-family: var(--sans); font-size: 0.87rem;
-    font-weight: 300; line-height: 1.82; color: #646464;
+    font-family: var(--sans); font-size: 0.78rem;
+    font-weight: 300; line-height: 1.85; color: #5A5348; letter-spacing: 0.02em;
 }
 .mode-time {
     position: absolute; top: 2.25rem; right: 2.25rem;
@@ -551,29 +549,28 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
 }
 .feat-text h3 {
     font-family: var(--serif);
-    font-size: clamp(2.5rem, 4vw, 4.4rem);
-    font-weight: 300; font-style: italic;
-    font-optical-sizing: auto;
-    color: var(--text); line-height: 1.12; margin: 0.8rem 0 1.35rem;
+    font-size: clamp(2.3rem, 3.6vw, 4rem);
+    font-weight: 400; font-style: italic;
+    color: var(--text); line-height: 1.14; margin: 0.8rem 0 1.35rem;
 }
 .feat-text h3 strong { font-style: normal; font-weight: 300; }
 .feat-text p {
-    font-family: var(--sans); font-size: 0.95rem;
-    font-weight: 300; line-height: 1.92;
-    color: #5A5A5A; max-width: 390px; margin-bottom: 2.5rem;
+    font-family: var(--sans); font-size: 0.8rem;
+    font-weight: 300; line-height: 1.95;
+    color: #5A5348; max-width: 390px; margin-bottom: 2.5rem; letter-spacing: 0.02em;
 }
 .feat-stats {
     display: flex; gap: 2.75rem;
     padding-top: 2rem; border-top: 1px solid var(--border);
 }
 .fs-v {
-    font-family: var(--serif); font-size: 2.6rem;
-    font-weight: 300; font-style: italic;
-    color: var(--text); line-height: 1;
+    font-family: var(--serif); font-size: 2.8rem;
+    font-weight: 400; font-style: italic;
+    color: var(--gold); line-height: 1;
 }
 .fs-l {
-    font-family: var(--sans); font-size: 0.6rem;
-    font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+    font-family: var(--sans); font-size: 0.52rem;
+    font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
     color: var(--muted); margin-top: 0.42rem;
 }
 
@@ -603,63 +600,65 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
 .shop-info { }
 .shop-name {
     font-family: var(--serif);
-    font-size: clamp(2.8rem, 4vw, 4.8rem);
-    font-weight: 300; font-style: italic;
-    font-optical-sizing: auto;
-    color: var(--white); line-height: 1.1;
+    font-size: clamp(2.6rem, 3.6vw, 4.2rem);
+    font-weight: 400; font-style: italic;
+    color: var(--white); line-height: 1.12;
     margin: 0.8rem 0 1.35rem;
 }
 .shop-desc {
-    font-family: var(--sans); font-size: 0.95rem;
-    font-weight: 300; line-height: 1.92;
-    color: rgba(255,255,255,0.38); margin-bottom: 2.5rem;
+    font-family: var(--sans); font-size: 0.8rem;
+    font-weight: 300; line-height: 1.95;
+    color: rgba(255,255,255,0.42); margin-bottom: 2.5rem; letter-spacing: 0.02em;
 }
 .shop-specs { margin-bottom: 2.5rem; }
 .shop-spec {
     display: flex; justify-content: space-between; align-items: center;
-    padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.055); font-size: 0.87rem;
+    padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.055); font-size: 0.8rem;
 }
 .shop-spec-l {
-    font-family: var(--sans); font-size: 0.62rem;
-    font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
-    color: rgba(255,255,255,0.25);
+    font-family: var(--sans); font-size: 0.54rem;
+    font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(203,156,44,0.55);
 }
-.shop-spec-v { color: rgba(255,255,255,0.58); }
+.shop-spec-v {
+    font-family: var(--sans); font-size: 0.76rem; font-weight: 300;
+    color: rgba(255,255,255,0.6); letter-spacing: 0.02em;
+}
 .shop-price {
     display: flex; align-items: baseline; gap: 0.4rem; margin-bottom: 1.75rem;
 }
 .shop-curr {
-    font-family: var(--serif); font-size: 1.5rem;
-    font-weight: 300; font-style: italic;
-    color: rgba(255,255,255,0.3);
+    font-family: var(--serif); font-size: 1.6rem;
+    font-weight: 400; font-style: italic;
+    color: var(--gold-l);
 }
 .shop-amt {
-    font-family: var(--serif); font-size: 5rem;
-    font-weight: 300; font-style: italic;
+    font-family: var(--serif); font-size: 5.2rem;
+    font-weight: 400; font-style: italic;
     color: var(--white); line-height: 1;
 }
 .shop-note {
-    font-family: var(--sans); font-size: 0.65rem;
-    color: rgba(255,255,255,0.22);
+    font-family: var(--sans); font-size: 0.58rem;
+    color: rgba(255,255,255,0.25); letter-spacing: 0.04em;
 }
 .shop-add {
     width: 100%; padding: 1.2rem;
-    background: var(--white); color: var(--black);
-    font-family: var(--sans); font-size: 0.7rem;
-    font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+    background: var(--gold); color: var(--white);
+    font-family: var(--sans); font-size: 0.62rem;
+    font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
     transition: background .3s ease, color .3s ease, box-shadow .3s ease;
     margin-bottom: 0.7rem;
 }
-.shop-add:hover { background: var(--gold); color: var(--black); box-shadow: 0 8px 28px rgba(176,138,34,0.25); }
+.shop-add:hover { background: var(--gold-bright); color: var(--black); box-shadow: 0 8px 28px rgba(203,156,44,0.28); }
 .shop-buy {
     width: 100%; padding: 1.2rem;
     background: transparent; color: rgba(255,255,255,0.36);
-    font-family: var(--sans); font-size: 0.7rem;
-    font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
-    border: 1px solid rgba(255,255,255,0.12);
+    font-family: var(--sans); font-size: 0.62rem;
+    font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
+    border: 1px solid rgba(203,156,44,0.25);
     transition: border-color .3s ease, color .3s ease;
 }
-.shop-buy:hover { border-color: var(--gold); color: var(--gold-l); }
+.shop-buy:hover { border-color: var(--gold-l); color: var(--gold-l); }
 
 /* ═══════════════════════════════════════
    RESULTS — B/A + REVIEWS
@@ -669,12 +668,11 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
 .results-head { margin-bottom: 4.5rem; }
 .results-head h2 {
     font-family: var(--serif);
-    font-size: clamp(3rem, 5vw, 5.5rem);
-    font-weight: 300; font-style: italic;
-    font-optical-sizing: auto;
-    color: var(--text); line-height: 1.06; margin: 0.8rem 0 0.7rem;
+    font-size: clamp(2.8rem, 4.5vw, 5rem);
+    font-weight: 400; font-style: italic;
+    color: var(--text); line-height: 1.08; margin: 0.8rem 0 0.7rem;
 }
-.results-head p { font-family: var(--sans); font-size: 0.85rem; color: var(--muted); }
+.results-head p { font-family: var(--sans); font-size: 0.76rem; color: var(--muted); letter-spacing: 0.04em; }
 
 /* Before/after grid */
 .ba-grid {
@@ -707,16 +705,16 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
 }
 .ba-meta { padding: 1.5rem 1.75rem; }
 .ba-weeks {
-    font-family: var(--sans); font-size: 0.65rem;
-    font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+    font-family: var(--sans); font-size: 0.54rem;
+    font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
     color: var(--gold); margin-bottom: 0.25rem;
 }
 .ba-name {
-    font-family: var(--serif); font-size: 1.45rem;
-    font-weight: 300; font-style: italic;
+    font-family: var(--serif); font-size: 1.55rem;
+    font-weight: 400; font-style: italic;
     color: var(--text); margin-bottom: 0.3rem;
 }
-.ba-result { font-family: var(--sans); font-size: 0.85rem; font-weight: 300; color: #646464; line-height: 1.65; }
+.ba-result { font-family: var(--sans); font-size: 0.76rem; font-weight: 300; color: #5A5348; line-height: 1.68; letter-spacing: 0.02em; }
 
 /* Testimonials */
 .testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2.5rem; }
@@ -724,14 +722,13 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
 .t-stars { display: flex; gap: 0.18rem; margin-bottom: 1.25rem; }
 .t-star { font-size: 0.65rem; color: var(--gold); }
 .t-q {
-    font-family: var(--serif); font-size: 1.25rem;
-    font-style: italic; font-weight: 300;
-    font-optical-sizing: auto;
-    line-height: 1.7; color: var(--text); margin-bottom: 1.6rem;
+    font-family: var(--serif); font-size: 1.35rem;
+    font-style: italic; font-weight: 400;
+    line-height: 1.72; color: var(--text); margin-bottom: 1.6rem;
 }
 .t-who {
-    font-family: var(--sans); font-size: 0.65rem;
-    font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+    font-family: var(--sans); font-size: 0.56rem;
+    font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted);
 }
 .t-who em { font-style: normal; color: var(--gold); }
 
@@ -745,15 +742,15 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
 }
 .certs-inner { max-width: 820px; margin: 0 auto; text-align: center; }
 .certs-title {
-    font-family: var(--sans); font-size: 0.62rem;
-    font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase;
+    font-family: var(--sans); font-size: 0.54rem;
+    font-weight: 600; letter-spacing: 0.38em; text-transform: uppercase;
     color: var(--muted); margin-bottom: 2.75rem;
 }
 .certs-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.65rem 1.5rem; }
 .cert-b {
     padding: 0.42rem 1rem; border: 1px solid var(--border);
-    font-family: var(--sans); font-size: 0.65rem;
-    font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #8A8A84;
+    font-family: var(--sans); font-size: 0.56rem;
+    font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #8A8070;
     transition: border-color .25s ease, color .25s ease;
 }
 .cert-b:hover { border-color: var(--gold); color: var(--gold); }
@@ -774,36 +771,36 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
 }
 .cta-section h2 {
     font-family: var(--serif);
-    font-size: clamp(3.5rem, 6.5vw, 7.5rem);
-    font-weight: 300; font-style: italic;
-    font-optical-sizing: auto;
-    color: var(--white); line-height: 1.04;
-    max-width: 740px; margin: 0.8rem auto 1.5rem; letter-spacing: -0.01em;
+    font-size: clamp(3rem, 5.8vw, 6.8rem);
+    font-weight: 400; font-style: italic;
+    color: var(--white); line-height: 1.06;
+    max-width: 740px; margin: 0.8rem auto 1.5rem; letter-spacing: 0.01em;
 }
-.cta-section h2 em { color: var(--gold-l); }
-.cta-section h2 strong { font-style: normal; }
+.cta-section h2 em { color: var(--gold-bright); }
+.cta-section h2 strong { font-style: normal; font-weight: 300; }
 .cta-section p {
-    font-family: var(--sans); font-size: 0.88rem;
-    font-weight: 300; color: rgba(255,255,255,0.28); margin-bottom: 3rem;
+    font-family: var(--sans); font-size: 0.72rem;
+    font-weight: 300; color: rgba(255,255,255,0.3); margin-bottom: 3rem;
+    letter-spacing: 0.08em;
 }
 .cta-btns { display: flex; gap: 0.9rem; justify-content: center; flex-wrap: wrap; }
 .cta-a {
     display: inline-block; padding: 1.05rem 2.6rem;
-    background: var(--white); color: var(--black);
-    font-family: var(--sans); font-size: 0.7rem;
-    font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+    background: var(--gold); color: var(--white);
+    font-family: var(--sans); font-size: 0.62rem;
+    font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
     transition: background .3s ease, color .3s ease;
 }
-.cta-a:hover { background: var(--gold); color: var(--black); }
+.cta-a:hover { background: var(--gold-bright); color: var(--black); }
 .cta-b {
     display: inline-block; padding: 1.05rem 2.6rem;
     background: transparent; color: rgba(255,255,255,0.36);
-    font-family: var(--sans); font-size: 0.7rem;
-    font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
-    border: 1px solid rgba(255,255,255,0.12);
+    font-family: var(--sans); font-size: 0.62rem;
+    font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
+    border: 1px solid rgba(203,156,44,0.25);
     transition: border-color .3s ease, color .3s ease;
 }
-.cta-b:hover { border-color: var(--gold); color: var(--gold-l); }
+.cta-b:hover { border-color: var(--gold-l); color: var(--gold-l); }
 
 /* ═══════════════════════════════════════
    NEWSLETTER
@@ -812,12 +809,11 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
     background: var(--sand); padding: 5rem 3rem; text-align: center;
 }
 .nl h3 {
-    font-family: var(--serif); font-size: 3.2rem;
-    font-weight: 300; font-style: italic;
-    font-optical-sizing: auto;
+    font-family: var(--serif); font-size: 3.4rem;
+    font-weight: 400; font-style: italic;
     color: var(--text); margin: 0.6rem 0 0.65rem;
 }
-.nl p { font-family: var(--sans); font-size: 0.9rem; font-weight: 300; color: var(--muted); margin-bottom: 2.25rem; }
+.nl p { font-family: var(--sans); font-size: 0.76rem; font-weight: 300; color: var(--muted); margin-bottom: 2.25rem; letter-spacing: 0.04em; }
 .nl-form { display: flex; max-width: 400px; margin: 0 auto; }
 .nl-in {
     flex: 1; padding: 0.9rem 1.15rem;
@@ -844,19 +840,19 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
 .footer-inner { max-width: 1080px; margin: 0 auto; }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3.5rem; margin-bottom: 4rem; }
 .f-brand-name {
-    font-family: var(--serif); font-size: 1.75rem;
-    font-weight: 300; font-style: italic; letter-spacing: 0.04em;
+    font-family: var(--serif); font-size: 2rem;
+    font-weight: 400; font-style: italic; letter-spacing: 0.02em;
     color: var(--white); display: block; margin-bottom: 0.25rem; line-height: 1;
 }
 .f-brand-tag {
-    font-family: var(--sans); font-size: 0.44rem;
-    font-weight: 500; letter-spacing: 0.42em; text-transform: uppercase;
+    font-family: var(--sans); font-size: 0.42rem;
+    font-weight: 600; letter-spacing: 0.48em; text-transform: uppercase;
     color: var(--gold); display: block; margin-bottom: 1.6rem;
 }
 .f-desc {
-    font-family: var(--sans); font-size: 0.82rem;
-    font-weight: 300; line-height: 1.82; color: rgba(255,255,255,0.55);
-    max-width: 250px; margin-bottom: 1.85rem;
+    font-family: var(--sans); font-size: 0.76rem;
+    font-weight: 300; line-height: 1.88; color: rgba(255,255,255,0.5);
+    max-width: 250px; margin-bottom: 1.85rem; letter-spacing: 0.02em;
 }
 .f-social { display: flex; gap: 0.65rem; }
 .f-sl {
@@ -868,12 +864,12 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
 }
 .f-sl:hover { border-color: var(--gold); color: var(--gold); }
 .f-col-t {
-    font-family: var(--sans); font-size: 0.58rem;
-    font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
+    font-family: var(--sans); font-size: 0.52rem;
+    font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase;
     color: rgba(255,255,255,0.78); margin-bottom: 1.5rem;
 }
 .f-links { display: flex; flex-direction: column; gap: 0.75rem; }
-.f-links a { font-family: var(--sans); font-size: 0.82rem; font-weight: 300; color: rgba(255,255,255,0.55); transition: color .25s ease; }
+.f-links a { font-family: var(--sans); font-size: 0.76rem; font-weight: 300; color: rgba(255,255,255,0.5); transition: color .25s ease; letter-spacing: 0.02em; }
 .f-links a:hover { color: var(--white); }
 .f-btm {
     padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08);
@@ -883,6 +879,78 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
 .f-legal { display: flex; gap: 1.5rem; }
 .f-legal a { font-family: var(--sans); font-size: 0.65rem; color: rgba(255,255,255,0.45); transition: color .25s ease; }
 .f-legal a:hover { color: rgba(255,255,255,0.8); }
+
+/* ═══════════════════════════════════════
+   ANNOUNCEMENT BAR (Silk'n style)
+═══════════════════════════════════════ */
+.announce {
+    background: var(--black);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    overflow: hidden; height: 38px; position: relative; z-index: 400;
+}
+.announce-track {
+    display: flex; width: max-content;
+    animation: ann-run 18s linear infinite;
+    height: 100%; align-items: center;
+}
+.announce-track:hover { animation-play-state: paused; }
+.announce-item {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0 3rem; white-space: nowrap;
+    font-family: var(--sans); font-size: 0.58rem;
+    font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(255,255,255,0.62); flex-shrink: 0;
+}
+.announce-item svg { color: var(--gold); flex-shrink: 0; }
+@keyframes ann-run {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+/* ═══════════════════════════════════════
+   BENEFIT PILLARS (Silk'n card grid)
+═══════════════════════════════════════ */
+.pillars {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+}
+.pillars-grid {
+    display: grid; grid-template-columns: repeat(4,1fr);
+    border-top: 1px solid var(--border);
+}
+.pillar {
+    padding: 3.5rem 2.75rem;
+    border-right: 1px solid var(--border);
+    position: relative; overflow: hidden;
+    transition: background .3s ease;
+}
+.pillar:last-child { border-right: none; }
+.pillar:hover { background: var(--cream); }
+.pillar-dot {
+    width: 12px; height: 12px; border-radius: 50%;
+    margin-bottom: 1.5rem; flex-shrink: 0;
+}
+.pillar-nm {
+    font-family: var(--serif); font-size: 2.8rem;
+    font-weight: 400; font-style: italic;
+    line-height: 1; opacity: 0.08; position: absolute;
+    top: 1.75rem; right: 1.75rem; color: var(--text);
+}
+.pillar-title {
+    font-family: var(--serif); font-size: 1.5rem;
+    font-weight: 400; font-style: italic;
+    color: var(--text); line-height: 1.2; margin-bottom: 0.6rem;
+}
+.pillar-sub {
+    font-family: var(--sans); font-size: 0.54rem;
+    font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1rem;
+}
+.pillar-desc {
+    font-family: var(--sans); font-size: 0.76rem;
+    font-weight: 300; line-height: 1.85;
+    color: var(--muted); letter-spacing: 0.02em;
+}
 
 /* ═══════════════════════════════════════
    RESPONSIVE
@@ -907,35 +975,154 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
     .ba-grid { grid-template-columns: 1fr 1fr; }
     .testi-grid { grid-template-columns: 1fr; max-width: 480px; }
     .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    .pillars-grid { grid-template-columns: repeat(2,1fr); }
+    .pillar:nth-child(2) { border-right: none; }
+    .pillar:nth-child(3) { border-top: 1px solid var(--border); }
+    .pillar:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
 }
+/* ═══════════════════════════════════════
+   SHOP TRUST + INBOX
+═══════════════════════════════════════ */
+.shop-inbox {
+    margin-bottom: 1.75rem;
+    padding: 1.25rem 0;
+    border-top: 1px solid rgba(255,255,255,0.07);
+}
+.shop-inbox-title {
+    font-family: var(--sans); font-size: 0.6rem;
+    font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.3); margin-bottom: 0.85rem;
+}
+.shop-inbox-list {
+    display: flex; flex-direction: column; gap: 0.45rem;
+}
+.shop-inbox-list li {
+    font-family: var(--sans); font-size: 0.85rem; font-weight: 300;
+    color: rgba(255,255,255,0.5);
+    padding-left: 1rem; position: relative;
+}
+.shop-inbox-list li::before {
+    content: '—'; position: absolute; left: 0;
+    color: var(--gold); opacity: 0.6; font-size: 0.7rem;
+}
+.shop-trust {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0.75rem 1.5rem; margin-bottom: 2rem;
+    padding: 1.25rem 0; border-top: 1px solid rgba(255,255,255,0.07);
+}
+.trust-item {
+    display: flex; align-items: center; gap: 0.5rem;
+    color: rgba(255,255,255,0.45);
+    font-family: var(--sans); font-size: 0.72rem; font-weight: 400;
+}
+.trust-item svg { color: var(--gold); flex-shrink: 0; }
+
+/* ═══════════════════════════════════════
+   RESULTS DISCLAIMER
+═══════════════════════════════════════ */
+.results-disclaimer {
+    font-family: var(--sans); font-size: 0.72rem;
+    font-weight: 400; color: var(--muted);
+    text-align: center; margin-top: 2rem;
+    padding: 0.75rem; border-top: 1px solid var(--border);
+}
+
 @media (max-width: 768px) {
     html { font-size: 15px; }
     .nav-links { display: none; }
     .hero-copy { padding: 7rem 1.75rem 8rem; }
-    .hero-h1 { font-size: clamp(2.8rem, 8.5vw, 4.5rem); }
+    .hero-h1 { font-size: clamp(2.6rem, 8vw, 4rem); }
+    .hero-stats { gap: 0; }
+    .hero-stat { padding: 1.2rem 1rem; }
+    .hero-stat-n { font-size: 1.8rem; }
     .story-right { padding: 3rem 1.75rem; }
-    .story-right h2 { font-size: clamp(2.5rem, 8vw, 4rem); }
+    .story-right h2 { font-size: clamp(2.3rem, 7.5vw, 3.6rem); }
+    .story-kpis { gap: 1.5rem; }
+    .kpi-v { font-size: 2.6rem; }
     .feat-text { padding: 3.5rem 2rem; }
-    .feat-text h3 { font-size: clamp(2.2rem, 7vw, 3.5rem); }
+    .feat-text h3 { font-size: clamp(2rem, 7vw, 3.2rem); }
     .modes-head { flex-direction: column; align-items: flex-start; gap: 0.5rem; padding: 0 1.75rem; }
-    .modes-head h2 { font-size: clamp(2.6rem, 8vw, 4rem); }
+    .modes-head h2 { font-size: clamp(2.4rem, 7.5vw, 3.6rem); }
+    .modes { padding: 5rem 0; }
     .ba-grid { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr; }
     .results-inner { padding: 0 1.75rem; }
-    .results-head h2 { font-size: clamp(2.6rem, 8vw, 4rem); }
+    .results-head h2 { font-size: clamp(2.4rem, 7.5vw, 3.6rem); }
+    .results-head { margin-bottom: 3rem; }
     .shop { padding: 6rem 1.75rem; }
     .shop-inner { padding: 0; }
-    .cta-section h2 { font-size: clamp(3rem, 9vw, 5rem); }
+    .shop-trust { grid-template-columns: 1fr; }
+    .shop-name { font-size: clamp(2.2rem, 7vw, 3.2rem); }
+    .shop-amt { font-size: 4rem; }
+    .cta-section h2 { font-size: clamp(2.6rem, 8.5vw, 4.4rem); }
+    .wl-panel-text { padding: 3rem 2rem; }
+    .wl-tabs { grid-template-columns: repeat(2,1fr); }
+    .wl-tab { padding: 1.5rem 1.25rem; }
+    .wl-nm { font-size: 2rem; }
+    .nl h3 { font-size: 2.6rem; }
+    .pillars-grid { grid-template-columns: 1fr 1fr; }
+    .pillar { padding: 2.5rem 1.75rem; border-right: none; border-bottom: 1px solid var(--border); }
+    .pillar:nth-child(odd) { border-right: 1px solid var(--border); }
+    .pillar:nth-child(3), .pillar:nth-child(4) { border-bottom: none; }
+    .pillar-nm { font-size: 2.2rem; }
+    .announce { display: none; }
 }
 </style>
 </head>
 <body>
 
+<!-- ══════════════ ANNOUNCEMENT BAR ══════════════ -->
+<div class="announce">
+    <div class="announce-track">
+        <span class="announce-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            Free UK Delivery on All Orders
+        </span>
+        <span class="announce-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            30-Day Results Guarantee
+        </span>
+        <span class="announce-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Results Visible From Week 4
+        </span>
+        <span class="announce-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+            1-Year Warranty Included
+        </span>
+        <span class="announce-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Secure Checkout — SSL Encrypted
+        </span>
+        <!-- duplicate for seamless loop -->
+        <span class="announce-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            Free UK Delivery on All Orders
+        </span>
+        <span class="announce-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            30-Day Results Guarantee
+        </span>
+        <span class="announce-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Results Visible From Week 4
+        </span>
+        <span class="announce-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+            1-Year Warranty Included
+        </span>
+        <span class="announce-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Secure Checkout — SSL Encrypted
+        </span>
+    </div>
+</div>
+
 <!-- ══════════════ NAV ══════════════ -->
 <nav class="nav" id="nav">
     <a href="/" class="nav-logo">
         <span class="nav-logo-name">Lumea</span>
-        <span class="nav-logo-sub">Luxury Light Therapy</span>
+        <span class="nav-logo-sub">Light Therapy</span>
     </a>
     <div class="nav-links">
         <a href="index.html" class="nav-link">Home</a>
@@ -964,15 +1151,14 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
     <div class="hero-copy">
         <p class="hero-eyebrow">4D LED Light Therapy</p>
         <h1 class="hero-h1">
-            <strong>The light</strong>
-            your skin
-            has been
-            <em>waiting for.</em>
+            <strong>Luxury LED Therapy.</strong>
+            Clinical Results
+            <em>at Home.</em>
         </h1>
-        <p class="hero-sub">Clinical-grade LED therapy engineered for luxury home use. Four wavelengths. Six intelligent modes. Visible results in four weeks.</p>
+        <p class="hero-sub">Four wavelengths. Six smart modes. 10 minutes a day. Visible results from week four.</p>
         <div class="hero-btns">
-            <a href="#shop" class="btn-fill">Shop The Mask — £249</a>
-            <a href="#technology" class="btn-ghost-light">Discover the science</a>
+            <a href="#shop" class="btn-fill">Buy Now — £249</a>
+            <a href="#technology" class="btn-ghost-light">See the science</a>
         </div>
     </div>
 
@@ -1012,24 +1198,24 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
         <span class="mq-item">147 LED Chips<span class="mq-dot"></span></span>
         <span class="mq-item">4 Clinical Wavelengths<span class="mq-dot"></span></span>
         <span class="mq-item">6 Smart Modes<span class="mq-dot"></span></span>
-        <span class="mq-item">FDA 510(k) Cleared<span class="mq-dot"></span></span>
+        <span class="mq-item">CE &amp; UKCA Certified<span class="mq-dot"></span></span>
         <span class="mq-item">10 Minutes Per Session<span class="mq-dot"></span></span>
         <span class="mq-item">Free UK Delivery<span class="mq-dot"></span></span>
         <span class="mq-item">Medical-Grade Silicone<span class="mq-dot"></span></span>
         <span class="mq-item">30-Day Guarantee<span class="mq-dot"></span></span>
         <span class="mq-item">10Hz Pulse Function<span class="mq-dot"></span></span>
-        <span class="mq-item">CE &amp; UKCA Certified<span class="mq-dot"></span></span>
+        <span class="mq-item">Results From Week 4<span class="mq-dot"></span></span>
         <!-- duplicate for seamless loop -->
         <span class="mq-item">147 LED Chips<span class="mq-dot"></span></span>
         <span class="mq-item">4 Clinical Wavelengths<span class="mq-dot"></span></span>
         <span class="mq-item">6 Smart Modes<span class="mq-dot"></span></span>
-        <span class="mq-item">FDA 510(k) Cleared<span class="mq-dot"></span></span>
+        <span class="mq-item">CE &amp; UKCA Certified<span class="mq-dot"></span></span>
         <span class="mq-item">10 Minutes Per Session<span class="mq-dot"></span></span>
         <span class="mq-item">Free UK Delivery<span class="mq-dot"></span></span>
         <span class="mq-item">Medical-Grade Silicone<span class="mq-dot"></span></span>
         <span class="mq-item">30-Day Guarantee<span class="mq-dot"></span></span>
         <span class="mq-item">10Hz Pulse Function<span class="mq-dot"></span></span>
-        <span class="mq-item">CE &amp; UKCA Certified<span class="mq-dot"></span></span>
+        <span class="mq-item">Results From Week 4<span class="mq-dot"></span></span>
     </div>
 </div>
 
@@ -1051,8 +1237,8 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
             <em>Science, light,</em><br>
             <strong>and the art of<br>flawless skin.</strong>
         </h2>
-        <p data-reveal data-reveal-delay="2">The 4D LED Light Therapy Mask is an innovative, rechargeable phototherapy device designed for professional results at home. Crafted from medical-grade silicone, its 4D curved surface follows every contour of your face — ensuring even, gap-free light coverage.</p>
-        <p data-reveal data-reveal-delay="2">Powered by four clinically-proven wavelengths that penetrate deep into the skin, it stimulates collagen and elastin production at the cellular level — delivering visible anti-aging and skin-rejuvenating results in as few as four weeks.</p>
+        <p data-reveal data-reveal-delay="2">The G11 is a rechargeable LED therapy mask built for professional results at home. Medical-grade silicone follows every facial contour, ensuring even, gap-free light coverage across your face and neck.</p>
+        <p data-reveal data-reveal-delay="2">Four wavelengths work together to stimulate collagen, clear breakouts, and restore luminosity — visible results in as few as four weeks.</p>
         <div class="story-kpis" data-reveal data-reveal-delay="3">
             <div><div class="kpi-v">147</div><div class="kpi-l">LED Chips</div></div>
             <div><div class="kpi-v">4</div><div class="kpi-l">Wavelengths</div></div>
@@ -1092,8 +1278,9 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
     <div class="wl-panel active" id="wl-yellow">
         <div class="wl-panel-text">
             <div class="wl-bignm" style="color:#E8B840;">590</div>
+            <p class="eyebrow" style="color:#E8B840;font-size:0.62rem;letter-spacing:0.28em;text-transform:uppercase;margin-bottom:0.5rem;">Reduces Redness · Enhances Glow</p>
             <h2 class="wl-title">Rejuvenation<br>&amp; Skin Tone</h2>
-            <p class="wl-body">Yellow light balances skin texture, stimulates red blood cells, and reduces redness, swelling, and fine lines. The choice for sensitive, reactive, or uneven skin — leaving a visibly refined, even complexion after every session.</p>
+            <p class="wl-body">Yellow light balances texture, calms redness, and leaves skin visibly refined and luminous — ideal for sensitive or uneven skin.</p>
             <div class="wl-tags">
                 <span class="wl-tag">Even Tone</span>
                 <span class="wl-tag">Redness</span>
@@ -1117,8 +1304,9 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
     <div class="wl-panel" id="wl-red">
         <div class="wl-panel-text">
             <div class="wl-bignm" style="color:#E84848;">633</div>
+            <p class="eyebrow" style="color:#E84848;font-size:0.62rem;letter-spacing:0.28em;text-transform:uppercase;margin-bottom:0.5rem;">Boosts Collagen · Firms Skin</p>
             <h2 class="wl-title">Anti-Aging<br>&amp; Collagen</h2>
-            <p class="wl-body">The gold-standard anti-aging wavelength. Clinically proven to promote collagen synthesis, tighten skin, and restore natural elasticity — addressing fine lines, wrinkles, and loss of firmness at the cellular level.</p>
+            <p class="wl-body">The gold-standard anti-aging wavelength. Promotes collagen production, tightens skin, and reduces fine lines and wrinkles at the cellular level.</p>
             <div class="wl-tags">
                 <span class="wl-tag">Collagen</span>
                 <span class="wl-tag">Skin Firming</span>
@@ -1142,8 +1330,9 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
     <div class="wl-panel" id="wl-nir">
         <div class="wl-panel-text">
             <div class="wl-bignm" style="color:#C040E8;">850</div>
+            <p class="eyebrow" style="color:#C040E8;font-size:0.62rem;letter-spacing:0.28em;text-transform:uppercase;margin-bottom:0.5rem;">Deep Repair · Moisture Retention</p>
             <h2 class="wl-title">Deep Repair<br>&amp; Restoration</h2>
-            <p class="wl-body">Near-infrared penetrates to the deepest skin layers — beyond any topical product. At 850nm and 1072nm, it regenerates skin, dramatically improves blood microcirculation, and increases moisture retention at the dermis level for lasting plumpness.</p>
+            <p class="wl-body">Near-infrared penetrates beyond any topical product — regenerating skin, improving microcirculation, and increasing moisture deep in the dermis for lasting plumpness.</p>
             <div class="wl-tags">
                 <span class="wl-tag">Deep Repair</span>
                 <span class="wl-tag">Circulation</span>
@@ -1167,8 +1356,9 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
     <div class="wl-panel" id="wl-blue">
         <div class="wl-panel-text">
             <div class="wl-bignm" style="color:#4870E8;">415</div>
+            <p class="eyebrow" style="color:#4870E8;font-size:0.62rem;letter-spacing:0.28em;text-transform:uppercase;margin-bottom:0.5rem;">Clears Acne · Reduces Inflammation</p>
             <h2 class="wl-title">Anti-Acne<br>&amp; Clarity</h2>
-            <p class="wl-body">Blue light at 415nm precisely targets acne-causing P. acnes bacteria at the source — without chemicals or irritation. Reduces post-acne inflammation and scarring, and increases skin oxygen for a visibly clearer, healthier complexion within weeks.</p>
+            <p class="wl-body">415nm targets acne-causing bacteria at the source without chemicals. Reduces inflammation and post-acne scarring for a visibly clearer complexion within weeks.</p>
             <div class="wl-tags">
                 <span class="wl-tag">Kills Bacteria</span>
                 <span class="wl-tag">Inflammation</span>
@@ -1269,7 +1459,7 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
         <div class="feat-text">
             <p class="eyebrow" data-reveal>Design</p>
             <h3 data-reveal data-reveal-delay="1"><em>4D curved.</em><br><strong>Ultra-thin.<br>Zero gaps.</strong></h3>
-            <p data-reveal data-reveal-delay="2">The G11's 4D curved surface follows every facial contour — ensuring perfectly even light coverage across the entire treatment area. No gaps. No pressure points. Medical-grade silicone that's as comfortable as it is clinical, with an adjustable buckle system for all face shapes.</p>
+            <p data-reveal data-reveal-delay="2">The G11's 4D curved surface follows every facial contour — no gaps, no pressure points. Medical-grade silicone with an adjustable buckle that fits all face shapes.</p>
             <div class="feat-stats" data-reveal data-reveal-delay="3">
                 <div><div class="fs-v">4D</div><div class="fs-l">Curved Surface</div></div>
                 <div><div class="fs-v">147</div><div class="fs-l">LED Chips</div></div>
@@ -1288,7 +1478,7 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
         <div class="feat-text">
             <p class="eyebrow" data-reveal>Innovation</p>
             <h3 data-reveal data-reveal-delay="1"><em>10Hz pulse.</em><br><strong>Amplified<br>results.</strong></h3>
-            <p data-reveal data-reveal-delay="2">Pulsed light at precisely 10Hz places skin cells under controlled oxidative stress — scientifically proven to enhance photon absorption and amplify treatment efficacy. Three brightness levels (50%, 75%, 100%) adapt every session to your skin's current needs.</p>
+            <p data-reveal data-reveal-delay="2">Pulsed light at 10Hz enhances photon absorption and amplifies treatment efficacy. Three brightness levels (50%, 75%, 100%) let you adapt every session to your skin's needs.</p>
             <div class="feat-stats" data-reveal data-reveal-delay="3">
                 <div><div class="fs-v">10Hz</div><div class="fs-l">Pulse Rate</div></div>
                 <div><div class="fs-v">3×</div><div class="fs-l">Brightness Levels</div></div>
@@ -1307,7 +1497,7 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
         <div class="feat-text">
             <p class="eyebrow" data-reveal>Control</p>
             <h3 data-reveal data-reveal-delay="1"><em>LCD display.</em><br><strong>Long battery.<br>Total control.</strong></h3>
-            <p data-reveal data-reveal-delay="2">A beautifully minimal LCD display shows your treatment mode, session timer, and intensity at a glance. A 5000mAh battery means weeks of daily sessions on a single charge — so your ritual never skips a beat. Charges via universal Type-C USB.</p>
+            <p data-reveal data-reveal-delay="2">A minimal LCD screen shows mode, timer, and intensity at a glance. The 5000mAh battery powers weeks of daily sessions on a single charge via Type-C USB.</p>
             <div class="feat-stats" data-reveal data-reveal-delay="3">
                 <div><div class="fs-v">5000</div><div class="fs-l">mAh Battery</div></div>
                 <div><div class="fs-v">6</div><div class="fs-l">Preset Modes</div></div>
@@ -1331,21 +1521,53 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
         <div class="shop-info">
             <p class="eyebrow" data-reveal style="color:rgba(176,138,34,0.7);">Featured Product</p>
             <h2 class="shop-name" data-reveal data-reveal-delay="1"><em>Lumea G11</em><br>4D LED Mask</h2>
-            <p class="shop-desc" data-reveal data-reveal-delay="2">Medical-grade silicone, four clinically-proven wavelengths, and six intelligent modes — one mask that delivers visible results in as few as four weeks.</p>
+            <p class="shop-desc" data-reveal data-reveal-delay="2">Medical-grade silicone. Four wavelengths. Six smart modes. One mask that delivers visible results in as few as four weeks.</p>
             <div class="shop-specs" data-reveal data-reveal-delay="2">
                 <div class="shop-spec"><span class="shop-spec-l">LED Count</span><span class="shop-spec-v">147 Chips (90 Face + 57 Neck)</span></div>
                 <div class="shop-spec"><span class="shop-spec-l">Wavelengths</span><span class="shop-spec-v">415 · 590 · 633 · 850/1072nm</span></div>
                 <div class="shop-spec"><span class="shop-spec-l">Battery</span><span class="shop-spec-v">5000mAh · Type-C USB</span></div>
                 <div class="shop-spec"><span class="shop-spec-l">Material</span><span class="shop-spec-v">Medical-Grade Silicone</span></div>
-                <div class="shop-spec"><span class="shop-spec-l">Certifications</span><span class="shop-spec-v">FDA · CE · UKCA · ISO 13485</span></div>
+                <div class="shop-spec"><span class="shop-spec-l">Certifications</span><span class="shop-spec-v">CE · UKCA · RoHS · IEC 60601</span></div>
             </div>
+
+            <!-- What's in the box -->
+            <div class="shop-inbox" data-reveal data-reveal-delay="2">
+                <p class="shop-inbox-title">What's in the box</p>
+                <ul class="shop-inbox-list">
+                    <li>Lumea G11 LED Mask</li>
+                    <li>LCD Remote Controller</li>
+                    <li>Type-C Charging Cable</li>
+                    <li>Adjustable Head Strap</li>
+                    <li>User Manual &amp; Quick Start Guide</li>
+                </ul>
+            </div>
+
+            <!-- Trust badges -->
+            <div class="shop-trust" data-reveal data-reveal-delay="3">
+                <div class="trust-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <span>30-Day Guarantee</span>
+                </div>
+                <div class="trust-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                    <span>Free UK Delivery</span>
+                </div>
+                <div class="trust-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    <span>Secure Payment</span>
+                </div>
+                <div class="trust-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                    <span>1-Year Warranty</span>
+                </div>
+            </div>
+
             <div class="shop-price" data-reveal data-reveal-delay="3">
                 <span class="shop-curr">£</span>
                 <span class="shop-amt">249</span>
-                <span class="shop-note">&nbsp;&nbsp;Free UK delivery · 30-day guarantee</span>
             </div>
-            <button class="shop-add" data-reveal data-reveal-delay="3">Add to Bag</button>
-            <button class="shop-buy" data-reveal data-reveal-delay="4">Buy It Now</button>
+            <button class="shop-add" data-reveal data-reveal-delay="3">Buy Now — £249</button>
+            <button class="shop-buy" data-reveal data-reveal-delay="4">Shop Lumea G11</button>
         </div>
     </div>
 </section>
@@ -1356,8 +1578,8 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
     <div class="results-inner">
         <div class="results-head" data-reveal>
             <p class="eyebrow">Real Results</p>
-            <h2>Visible transformation.<br><em>Clinically proven.</em></h2>
-            <p>Results shown after consistent daily use. Individual results may vary.</p>
+            <h2>Visible transformation.<br><em>Real people.</em></h2>
+            <p>Results shown after consistent daily use.</p>
         </div>
 
         <div class="ba-grid">
@@ -1420,8 +1642,10 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
             </div>
         </div>
 
+        <p class="results-disclaimer">Individual results may vary. Images are from consistent daily users over 4–6 weeks.</p>
+
         <!-- Testimonials -->
-        <div class="testi-grid">
+        <div class="testi-grid" style="margin-top:4rem;">
             <div class="testi-card" data-reveal>
                 <div class="t-stars"><span class="t-star">★</span><span class="t-star">★</span><span class="t-star">★</span><span class="t-star">★</span><span class="t-star">★</span></div>
                 <p class="t-q">I've spent thousands at clinics for results I couldn't sustain. Lumea has given me better skin than anything I've tried professionally — and I use it in my pyjamas.</p>
@@ -1434,8 +1658,8 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
             </div>
             <div class="testi-card" data-reveal data-reveal-delay="2">
                 <div class="t-stars"><span class="t-star">★</span><span class="t-star">★</span><span class="t-star">★</span><span class="t-star">★</span><span class="t-star">★</span></div>
-                <p class="t-q">As a dermatologist, I'm rarely impressed by consumer devices. Lumea is the exception. The wavelength accuracy and 10Hz pulse function are genuinely clinical-grade.</p>
-                <p class="t-who">Dr. Priya M. &nbsp;<em>Consultant Dermatologist</em></p>
+                <p class="t-q">I was sceptical at first, but after 8 weeks my skin is genuinely different. Pores tighter, texture smoother. Worth every penny and then some.</p>
+                <p class="t-who">Sophie R. &nbsp;<em>Verified · Birmingham</em></p>
             </div>
         </div>
     </div>
@@ -1445,22 +1669,15 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
 <!-- ══════════════ CERTIFICATIONS ══════════════ -->
 <div class="certs">
     <div class="certs-inner">
-        <p class="certs-title">Globally Certified · Clinically Tested · Dermatologist Approved</p>
+        <p class="certs-title">Safety Certified · Quality Tested</p>
         <div class="certs-row">
-            <span class="cert-b">FDA 510(k)</span>
             <span class="cert-b">CE Mark</span>
             <span class="cert-b">UKCA</span>
             <span class="cert-b">RoHS</span>
             <span class="cert-b">FCC</span>
-            <span class="cert-b">ISO 13485</span>
-            <span class="cert-b">ISO 9001</span>
-            <span class="cert-b">EU-MDR</span>
-            <span class="cert-b">TGA</span>
             <span class="cert-b">IEC 60601</span>
-            <span class="cert-b">MDSAP</span>
-            <span class="cert-b">SAA</span>
-            <span class="cert-b">SGS</span>
-            <span class="cert-b">ETL</span>
+            <span class="cert-b">ISO 13485</span>
+            <span class="cert-b">SGS Tested</span>
         </div>
     </div>
 </div>
@@ -1501,8 +1718,8 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
         <div class="footer-grid">
             <div>
                 <span class="f-brand-name">Lumea</span>
-                <span class="f-brand-tag">Luxury Light Therapy</span>
-                <p class="f-desc">Professional-grade LED light therapy for the modern skincare ritual — engineered with clinical precision, designed with uncompromising luxury.</p>
+                <span class="f-brand-tag">Light Therapy</span>
+                <p class="f-desc">LUMEA embodies the art of radiant transformation — where advanced light therapy meets timeless luxury, defined by elegance, confidence, and glow.</p>
                 <div class="f-social">
                     <a href="#" class="f-sl">ig</a>
                     <a href="#" class="f-sl">fb</a>
@@ -1553,7 +1770,11 @@ img { display: block; max-width: 100%; height: 100%; object-fit: cover; }
 <script>
 /* ── Nav scroll ── */
 const nav = document.getElementById('nav');
-const onScroll = () => nav.classList.toggle('solid', window.scrollY > 60);
+const annBar = document.querySelector('.announce');
+const onScroll = () => {
+    const annH = annBar ? annBar.offsetHeight : 0;
+    nav.classList.toggle('solid', window.scrollY > annH + 20);
+};
 window.addEventListener('scroll', onScroll, { passive: true });
 
 /* ── Scroll reveal ── */

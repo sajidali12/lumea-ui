@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lumea Light Therapy — G11 LED Mask</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+/* ── reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 18px; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+body { font-family: 'Montserrat', sans-serif; background: #fff; color: #1a1714; overflow-x: hidden; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
+button { border: none; background: none; cursor: pointer; font-family: inherit; }
+
+/* ─────────────────────────────────────
+   ANNOUNCEMENT BAR
+───────────────────────────────────── */
+.ann {
+  background: #f7f6f4;
+  border-bottom: 1px solid #e8e3da;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  padding: 0 2rem;
+  height: 40px;
+}
+.ann-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: #4a453e;
+  white-space: nowrap;
+}
+.ann-item svg { color: #cb9c2c; flex-shrink: 0; }
+@media (max-width: 768px) {
+  .ann { gap: 0; justify-content: flex-start; overflow: hidden; }
+  .ann-item:not(:first-child) { display: none; }
+}
+
+/* ─────────────────────────────────────
+   NAV
+───────────────────────────────────── */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 300;
+  background: #fff;
+  border-bottom: 1px solid #e8e3da;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  height: 60px;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.nav-logo-img {
+  height: 38px;
+  width: auto;
+  display: block;
+}
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.nav-links a {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #1a1714;
+  transition: color .2s;
+}
+.nav-links a:hover { color: #cb9c2c; }
+.nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+.nav-icons a {
+  color: #1a1714;
+  display: flex;
+  align-items: center;
+  transition: color .2s;
+  position: relative;
+}
+.nav-icons a:hover { color: #cb9c2c; }
+.cart-pip {
+  position: absolute;
+  top: -5px;
+  right: -7px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #1a1714;
+  color: #fff;
+  font-size: 0.38rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav { padding: 0 1.25rem; }
+}
+
+/* ─────────────────────────────────────
+   HERO CAROUSEL
+───────────────────────────────────── */
+.hero-carousel {
+  position: relative;
+  overflow: hidden;
+  height: calc(100svh - 100px);
+  min-height: 560px;
+  max-height: 900px;
+}
+.hero-track {
+  display: flex;
+  width: 300%;
+  height: 100%;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hero-slide {
+  width: calc(100% / 3);
+  height: 100%;
+  position: relative;
+  flex-shrink: 0;
+}
+.hero-slide img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+.hero-slide::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(14,11,8,0.62) 0%, rgba(14,11,8,0.22) 55%, transparent 100%);
+}
+.slide-body {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 6rem;
+  max-width: 600px;
+}
+.slide-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+.slide-badge-inner {
+  background: #543B2B;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #fff;
+  padding: 4px 10px;
+  text-transform: uppercase;
+}
+.slide-badge-text {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+}
+.slide-body h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.6rem, 5vw, 5rem);
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.05;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.01em;
+}
+.slide-action {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: color .2s;
+}
+.slide-action:hover { color: #d4aa40; }
+.slide-action svg { transition: transform .2s; }
+.slide-action:hover svg { transform: translateX(4px); }
+
+/* Carousel controls */
+.hero-dots {
+  position: absolute;
+  bottom: 1.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 0.5rem;
+}
+.hero-dot {
+  width: 24px;
+  height: 2px;
+  background: rgba(255,255,255,0.3);
+  cursor: pointer;
+  transition: background .3s, width .3s;
+  border: none;
+}
+.hero-dot.active {
+  background: #fff;
+  width: 40px;
+}
+.hero-prev, .hero-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  cursor: pointer;
+  transition: background .2s;
+  border: none;
+}
+.hero-prev:hover, .hero-next:hover { background: rgba(255,255,255,0.22); }
+.hero-prev { left: 1.5rem; }
+.hero-next { right: 1.5rem; }
+@media (max-width: 768px) {
+  .slide-body { padding: 0 1.75rem; }
+  .hero-prev, .hero-next { display: none; }
+}
+
+/* ─────────────────────────────────────
+   SECTION LABEL
+───────────────────────────────────── */
+.sec-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: #cb9c2c;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+.sec-label::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: #cb9c2c;
+  flex-shrink: 0;
+}
+
+/* ─────────────────────────────────────
+   PRODUCT CARDS SECTION
+───────────────────────────────────── */
+.products {
+  padding: 5rem 2.5rem;
+  background: #fff;
+  border-top: 1px solid #e8e3da;
+}
+.products-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.products-head {
+  margin-bottom: 3rem;
+}
+.products-head h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+  font-weight: 400;
+  font-style: italic;
+  color: #1a1714;
+  margin-top: 0.6rem;
+  line-height: 1.15;
+}
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: #e8e3da;
+}
+.product-card {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: background .2s;
+}
+.product-card:hover { background: #faf8f4; }
+.product-card-img {
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: #f5f3ef;
+  flex-shrink: 0;
+}
+.product-card-img img {
+  transition: transform .55s ease;
+}
+.product-card:hover .product-card-img img {
+  transform: scale(1.04);
+}
+.product-card-body {
+  padding: 1.6rem 1.6rem 2rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.product-card-nm {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #1a1714;
+  margin-bottom: 0.5rem;
+}
+.product-card-desc {
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: #7a6e64;
+  line-height: 1.7;
+  flex: 1;
+  margin-bottom: 1.25rem;
+}
+.product-card-cta {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #1a1714;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-bottom: 1.5px solid #1a1714;
+  padding-bottom: 1px;
+  align-self: flex-start;
+  transition: color .2s, border-color .2s;
+}
+.product-card-cta:hover { color: #cb9c2c; border-color: #cb9c2c; }
+.product-card-cta svg { transition: transform .2s; }
+.product-card-cta:hover svg { transform: translateX(3px); }
+@media (max-width: 1024px) {
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .product-grid { grid-template-columns: 1fr 1fr; }
+  .products { padding: 3.5rem 1.25rem; }
+}
+
+/* ─────────────────────────────────────
+   CATEGORY TILES (2 side-by-side)
+───────────────────────────────────── */
+.cat-tiles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid #e8e3da;
+}
+.cat-tile {
+  position: relative;
+  overflow: hidden;
+  min-height: 560px;
+  display: flex;
+  align-items: flex-end;
+  cursor: pointer;
+}
+.cat-tile-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.cat-tile-img img {
+  transition: transform .7s ease;
+}
+.cat-tile:hover .cat-tile-img img {
+  transform: scale(1.05);
+}
+.cat-tile::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(14,11,8,0.72) 0%, rgba(14,11,8,0.08) 50%, transparent 100%);
+  transition: opacity .3s;
+}
+.cat-tile-body {
+  position: relative;
+  z-index: 2;
+  padding: 2.5rem 2.75rem;
+  width: 100%;
+}
+.cat-tile-body h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 3.2vw, 3.2rem);
+  font-weight: 600;
+  font-style: italic;
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+.cat-tile-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  border-bottom: 1.5px solid rgba(255,255,255,0.3);
+  padding-bottom: 2px;
+  transition: color .2s, border-color .2s;
+}
+.cat-tile:hover .cat-tile-cta { color: #fff; border-color: #fff; }
+.cat-tile:nth-child(2) {
+  border-left: 1px solid rgba(255,255,255,0.06);
+}
+@media (max-width: 768px) {
+  .cat-tiles { grid-template-columns: 1fr; }
+  .cat-tile { min-height: 400px; }
+  .cat-tile:nth-child(2) { border-left: none; border-top: 1px solid #e8e3da; }
+}
+
+/* ─────────────────────────────────────
+   WIDE PROMO BANNER
+───────────────────────────────────── */
+.promo {
+  position: relative;
+  overflow: hidden;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #e8e3da;
+}
+.promo-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.promo-img img { object-position: center 30%; }
+.promo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(14,11,8,0.78) 0%, rgba(14,11,8,0.3) 55%, transparent 100%);
+}
+.promo-body {
+  position: relative;
+  z-index: 2;
+  padding: 0 6rem;
+  max-width: 560px;
+}
+.promo-body .sec-label { margin-bottom: 1.25rem; }
+.promo-body .sec-label { color: #d4aa40; }
+.promo-body .sec-label::before { background: #d4aa40; }
+.promo-body h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 4vw, 4rem);
+  font-weight: 600;
+  font-style: italic;
+  color: #fff;
+  line-height: 1.05;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.01em;
+}
+.promo-body p {
+  font-size: 0.92rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  letter-spacing: 0.02em;
+}
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2.25rem;
+  background: #cb9c2c;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: background .2s;
+}
+.btn-gold:hover { background: #d4aa40; }
+@media (max-width: 768px) {
+  .promo-body { padding: 0 2rem; }
+  .promo { min-height: 420px; }
+}
+
+/* ─────────────────────────────────────
+   NEWSLETTER
+───────────────────────────────────── */
+.nl {
+  background: #f7f6f4;
+  border-top: 1px solid #e8e3da;
+  padding: 5.5rem 2.5rem;
+  text-align: center;
+}
+.nl .sec-label {
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.nl .sec-label::before { display: none; }
+.nl h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-weight: 400;
+  font-style: italic;
+  color: #1a1714;
+  margin-bottom: 0.4rem;
+}
+.nl p {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: #8c8070;
+  margin-bottom: 2rem;
+}
+.nl-form {
+  display: flex;
+  max-width: 420px;
+  margin: 0 auto;
+}
+.nl-input {
+  flex: 1;
+  padding: 0.82rem 1.1rem;
+  background: #fff;
+  border: 1px solid #ddd8d0;
+  border-right: none;
+  font-size: 0.72rem;
+  color: #1a1714;
+  outline: none;
+  font-family: inherit;
+  transition: border-color .2s;
+}
+.nl-input:focus { border-color: #cb9c2c; }
+.nl-input::placeholder { color: #b0a898; }
+.nl-submit {
+  padding: 0.82rem 1.6rem;
+  background: #1a1714;
+  color: #fff;
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .2s;
+}
+.nl-submit:hover { background: #cb9c2c; }
+.nl-legal {
+  font-size: 0.54rem;
+  color: #b0a898;
+  margin-top: 0.8rem;
+}
+
+/* ─────────────────────────────────────
+   FOOTER
+───────────────────────────────────── */
+.footer {
+  background: #1a1714;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding: 5rem 2.5rem 2.5rem;
+}
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3.5rem;
+}
+.footer-logo-img {
+  height: 40px;
+  width: auto;
+  display: block;
+  margin-bottom: 1.4rem;
+}
+.footer-desc {
+  font-size: 0.84rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.62);
+  line-height: 1.82;
+  max-width: 230px;
+  margin-bottom: 1.5rem;
+}
+.footer-socials {
+  display: flex;
+  gap: 0.4rem;
+}
+.footer-soc {
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.35);
+  font-size: 0.52rem;
+  font-weight: 700;
+  transition: border-color .2s, color .2s;
+}
+.footer-soc:hover { border-color: #cb9c2c; color: #cb9c2c; }
+.footer-col h4 {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 1.25rem;
+}
+.footer-col ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+.footer-col ul a {
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.65);
+  transition: color .2s;
+}
+.footer-col ul a:hover { color: #fff; }
+.footer-bottom {
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.footer-copy { font-size: 0.59rem; color: rgba(255,255,255,0.5); }
+.footer-legal { display: flex; gap: 1.5rem; }
+.footer-legal a {
+  font-size: 0.59rem;
+  color: rgba(255,255,255,0.5);
+  transition: color .2s;
+}
+.footer-legal a:hover { color: rgba(255,255,255,0.6); }
+@media (max-width: 1024px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+}
+@media (max-width: 640px) {
+  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ── ANNOUNCEMENT BAR ── -->
+<div class="ann">
+  <div class="ann-item">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+    Free UK delivery on all orders
+  </div>
+  <div class="ann-item">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+    30-day money-back guarantee
+  </div>
+  <div class="ann-item">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+    1-year warranty included
+  </div>
+</div>
+
+<!-- ── NAV ── -->
+<nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="img/logo.png" alt="Lumea Light Therapy" class="nav-logo-img">
+  </a>
+  <div class="nav-links">
+    <a href="collection.html">Shop</a>
+    <a href="product.html">The G11</a>
+    <a href="#wavelengths">Wavelengths</a>
+    <a href="#results">Results</a>
+    <a href="#">About</a>
+  </div>
+  <div class="nav-icons">
+    <a href="#" aria-label="Search">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    </a>
+    <a href="#" aria-label="Account">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </a>
+    <a href="#" aria-label="Cart" style="position:relative;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="cart-pip">0</span>
+    </a>
+  </div>
+</nav>
+
+<!-- ── HERO CAROUSEL ── -->
+<section class="hero-carousel" aria-label="Featured collections">
+  <div class="hero-track" id="heroTrack">
+
+    <!-- Slide 1: LED PRO Collection -->
+    <div class="hero-slide">
+      <img
+        src="https://data.silkn.com/transform/86d7432a-22b6-4841-bd65-4c0c7cbb2ba4/Homepage-Banner-Desktop-3840x1920?io=transform:fill,width:1920,height:960"
+        alt="Lumea G11 LED Mask Collection"
+        loading="eager"
+      >
+      <div class="slide-body">
+        <div class="slide-badge">
+          <span class="slide-badge-inner">New</span>
+          <span class="slide-badge-text">G11 · LED Mask</span>
+        </div>
+        <h1>The G11<br>Collection.</h1>
+        <a href="product.html" class="slide-action">
+          Reveal Your Glow
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Slide 2: LED EMS Face Mask -->
+    <div class="hero-slide">
+      <img
+        src="https://data.silkn.com/transform/fd5e78fe-dfce-48c0-9ce2-9cadfe1d6660/Silk-n30429?io=transform:fill,width:1920,height:960"
+        alt="Lumea G11 LED therapy in use"
+        loading="lazy"
+      >
+      <div class="slide-body">
+        <div class="slide-badge">
+          <span class="slide-badge-inner">147 LEDs</span>
+          <span class="slide-badge-text">4 Wavelengths</span>
+        </div>
+        <h1>Light Therapy<br>Redefined.</h1>
+        <a href="product.html" class="slide-action">
+          Discover the Science
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Slide 3: Lifestyle -->
+    <div class="hero-slide">
+      <img
+        src="https://data.silkn.com/transform/54f30a50-a585-4e10-be09-3fa10eb19bdc/2022-09-13-MOOI-The-Agency-Silk-n_3227_CROP2?io=transform:fill,width:1920,height:960"
+        alt="Lumea G11 results lifestyle"
+        loading="lazy"
+      >
+      <div class="slide-body">
+        <div class="slide-badge">
+          <span class="slide-badge-inner">10 min/day</span>
+          <span class="slide-badge-text">Visible from Week 4</span>
+        </div>
+        <h1>Better Skin.<br>Every Day.</h1>
+        <a href="product.html" class="slide-action">
+          Buy Now — £249
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Dots -->
+  <div class="hero-dots" role="tablist">
+    <button class="hero-dot active" data-slide="0" aria-label="Slide 1"></button>
+    <button class="hero-dot" data-slide="1" aria-label="Slide 2"></button>
+    <button class="hero-dot" data-slide="2" aria-label="Slide 3"></button>
+  </div>
+
+  <!-- Arrows -->
+  <button class="hero-prev" id="heroPrev" aria-label="Previous slide">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+  </button>
+  <button class="hero-next" id="heroNext" aria-label="Next slide">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </button>
+</section>
+
+<!-- ── PRODUCT CARDS (4 Wavelengths) ── -->
+<section class="products" id="wavelengths">
+  <div class="products-inner">
+    <div class="products-head">
+      <p class="sec-label">The Technology</p>
+      <h2>Four wavelengths.<br>Every skin concern.</h2>
+    </div>
+    <div class="product-grid">
+
+      <!-- Blue 415nm -->
+      <a href="product.html" class="product-card">
+        <div class="product-card-img">
+          <img
+            src="https://data.silkn.com/transform/9d344118-bd8f-436c-843d-ae0a1affaf47/Thumbnail-CP?io=transform:fill,width:600,height:600"
+            alt="Blue 415nm LED — Anti-Acne"
+            loading="lazy"
+          >
+        </div>
+        <div class="product-card-body">
+          <p class="product-card-nm">Blue 415nm</p>
+          <p class="product-card-desc">Reduces signs of aging, acne-related redness, and dry skin.</p>
+          <span class="product-card-cta">
+            Discover
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Yellow 590nm -->
+      <a href="product.html" class="product-card">
+        <div class="product-card-img">
+          <img
+            src="https://data.silkn.com/transform/11077bf6-c3f5-4af7-879d-b61393cdc6b2/Thumbnail_LED_Face_Mask_Pro_Side-ON?io=transform:fill,width:600,height:600"
+            alt="Yellow 590nm LED — Glow"
+            loading="lazy"
+          >
+        </div>
+        <div class="product-card-body">
+          <p class="product-card-nm">Yellow 590nm</p>
+          <p class="product-card-desc">7 advanced LED modes for complete skin rejuvenation and tone.</p>
+          <span class="product-card-cta">
+            Discover
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Red 633nm -->
+      <a href="product.html" class="product-card">
+        <div class="product-card-img">
+          <img
+            src="https://data.silkn.com/transform/7920c96b-228a-4a84-95b6-35a3a961c546/Thumbnail_LED-EMS-Face-Mask?io=transform:fill,width:600,height:600"
+            alt="Red 633nm LED — Anti-Aging"
+            loading="lazy"
+          >
+        </div>
+        <div class="product-card-body">
+          <p class="product-card-nm">Red 633nm</p>
+          <p class="product-card-desc">Powerful fusion of LED technologies for smoother, more luminous skin.</p>
+          <span class="product-card-cta">
+            Discover
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- NIR 850nm -->
+      <a href="product.html" class="product-card">
+        <div class="product-card-img">
+          <img
+            src="https://data.silkn.com/transform/c7e55bfb-500e-4fa2-abed-ccea6bf0c8bc/Thumbnail_LumiLips_Perspective?io=transform:fill,width:600,height:600"
+            alt="NIR 850nm — Deep Repair"
+            loading="lazy"
+          >
+        </div>
+        <div class="product-card-body">
+          <p class="product-card-nm">NIR 850nm</p>
+          <p class="product-card-desc">Smooth, plump, and rejuvenate skin naturally, all from the comfort of your home.</p>
+          <span class="product-card-cta">
+            Discover
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CATEGORY TILES ── -->
+<div class="cat-tiles" id="results">
+
+  <a href="product.html" class="cat-tile">
+    <div class="cat-tile-img">
+      <img
+        src="https://data.silkn.com/transform/e1efdcef-38e0-4f8c-b953-a531f88da880/Silk-n-08_EDIT?io=transform:fill,width:900,height:1100"
+        alt="Lumea G11 LED Mask design"
+        loading="lazy"
+      >
+    </div>
+    <div class="cat-tile-body">
+      <h2>Shop Lumea G11</h2>
+      <span class="cat-tile-cta">
+        Discover
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </span>
+    </div>
+  </a>
+
+  <a href="product.html" class="cat-tile">
+    <div class="cat-tile-img">
+      <img
+        src="https://data.silkn.com/transform/0d331e7f-40f9-4015-b653-9bd37fd301dd/326_EDIT_CROP?io=transform:fill,width:900,height:1100"
+        alt="Lumea G11 results"
+        loading="lazy"
+      >
+    </div>
+    <div class="cat-tile-body">
+      <h2>Real Results</h2>
+      <span class="cat-tile-cta">
+        Discover
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </span>
+    </div>
+  </a>
+
+</div>
+
+<!-- ── WIDE PROMO BANNER ── -->
+<div class="promo">
+  <div class="promo-img">
+    <img
+      src="https://data.silkn.com/transform/1b07c0a5-053c-422c-a7c8-387ba7717ad0/2023-10-17-Silk-n-Studio-LouLou3542_EDIT_CROP?io=transform:fill,width:1920,height:1000"
+      alt="Lumea G11 lifestyle"
+      loading="lazy"
+    >
+  </div>
+  <div class="promo-body">
+    <p class="sec-label">The Lumea G11</p>
+    <h2>Better skin.<br>10 minutes<br>a day.</h2>
+    <p>147 LEDs · 4 wavelengths · 6 smart modes · Free UK delivery</p>
+    <a href="product.html" class="btn-gold">
+      Buy Now — £249
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- ── NEWSLETTER ── -->
+<section class="nl">
+  <p class="sec-label">Inner Circle</p>
+  <h3>Sign up for exclusive access</h3>
+  <p>Early drops, skincare guides, and member-only offers.</p>
+  <form class="nl-form" onsubmit="return false;">
+    <input class="nl-input" type="email" placeholder="Your email address" aria-label="Email address">
+    <button class="nl-submit" type="submit">Subscribe</button>
+  </form>
+  <p class="nl-legal">By subscribing you agree to our Privacy Policy. Unsubscribe at any time.</p>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+
+      <div>
+        <img src="img/logo-gold.png" alt="Lumea Light Therapy" class="footer-logo-img">
+        <p class="footer-desc">Advanced LED light therapy for the modern skincare ritual — clinical technology at home.</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-soc" aria-label="Instagram">ig</a>
+          <a href="#" class="footer-soc" aria-label="Facebook">fb</a>
+          <a href="#" class="footer-soc" aria-label="TikTok">tt</a>
+          <a href="#" class="footer-soc" aria-label="YouTube">yt</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="product.html">The G11 Mask</a></li>
+          <li><a href="collection.html">All Products</a></li>
+          <li><a href="#">Bundles</a></li>
+          <li><a href="#">Gift Sets</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Customer Care</h4>
+        <ul>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Shipping &amp; Returns</a></li>
+          <li><a href="#">Warranty</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">The Science</a></li>
+          <li><a href="#">Skincare Journal</a></li>
+          <li><a href="#">Press</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Lumea Light Therapy Ltd. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  const track = document.getElementById('heroTrack');
+  const dots = document.querySelectorAll('.hero-dot');
+  const total = 3;
+  let current = 0;
+  let timer;
+
+  function goTo(n) {
+    current = (n + total) % total;
+    track.style.transform = `translateX(-${current * (100 / total)}%)`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+
+  function next() { goTo(current + 1); }
+  function prev() { goTo(current - 1); }
+
+  function startAuto() {
+    timer = setInterval(next, 5000);
+  }
+
+  function resetAuto() {
+    clearInterval(timer);
+    startAuto();
+  }
+
+  document.getElementById('heroNext').addEventListener('click', () => { next(); resetAuto(); });
+  document.getElementById('heroPrev').addEventListener('click', () => { prev(); resetAuto(); });
+  dots.forEach(d => d.addEventListener('click', () => { goTo(+d.dataset.slide); resetAuto(); }));
+
+  startAuto();
+})();
+</script>
+
+</body>
+</html>
